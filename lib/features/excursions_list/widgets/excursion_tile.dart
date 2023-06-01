@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/models/excursion.dart';
 
 class ExcursionTile extends StatelessWidget {
@@ -13,11 +12,6 @@ class ExcursionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      // leading: SvgPicture.asset(
-      //   'assets/svg/logo.svg',
-      //   height: 25,
-      //   width: 25,
-      // ),
       leading: Image.network(
         excursion.photos[0],
         width: 65,

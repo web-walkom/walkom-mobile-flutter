@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:walkom_mobile_flutter/features/excursions_list/bloc/excursions_list_bloc.dart';
 import 'package:walkom_mobile_flutter/features/excursions_list/widgets/widgets.dart';
-import 'package:walkom_mobile_flutter/repositories/excursions/excursions_repository.dart';
-import 'package:walkom_mobile_flutter/repositories/excursions/models/excursion.dart';
+import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 
 class ExcursionsListScreen extends StatefulWidget {
   const ExcursionsListScreen({super.key});
@@ -11,11 +15,13 @@ class ExcursionsListScreen extends StatefulWidget {
 }
 
 class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
-  List<ExcursionItem>? excursionsList;
+  final _excursionsListBloc = ExcursionsListBloc(
+    GetIt.I<ExcursionsRepository>(),
+  );
 
   @override
   void initState() {
-    __loadExcursions();
+    _excursionsListBloc.add(LoadExcursionsList());
     super.initState();
   }
 
@@ -26,8 +32,45 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
         title: const Text('Экскурсии'),
         centerTitle: true,
       ),
-      body: (excursionsList == null)
-          ? const Center(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          final completer = Completer();
+          _excursionsListBloc.add(LoadExcursionsList(completer: completer));
+          return completer.future;
+        },
+        child: BlocBuilder<ExcursionsListBloc, ExcursionsListState>(
+          bloc: _excursionsListBloc,
+          builder: (context, state) {
+            if (state is ExcursionsListLoaded) {
+              return ListView.builder(
+                padding: const EdgeInsets.only(top: 15),
+                itemCount: state.excursionsList.length,
+                itemBuilder: (context, i) {
+                  return ExcursionTile(excursion: state.excursionsList[i]);
+                },
+              );
+            }
+
+            if (state is ExcursionsListError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text('Ошибка при получении данных'),
+                    const SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () {
+                        _excursionsListBloc.add(LoadExcursionsList());
+                      },
+                      child: const Text('Попробвать снова'),
+                    )
+                  ],
+                ),
+              );
+            }
+
+            return const Center(
               child: SizedBox(
                 height: 20,
                 width: 20,
@@ -36,19 +79,10 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
                   strokeWidth: 1.5,
                 ),
               ),
-            )
-          : ListView.builder(
-              padding: const EdgeInsets.only(top: 15),
-              itemCount: excursionsList!.length,
-              itemBuilder: (context, i) {
-                return ExcursionTile(excursion: excursionsList![i]);
-              },
-            ),
+            );
+          },
+        ),
+      ),
     );
-  }
-
-  Future<void> __loadExcursions() async {
-    excursionsList = await ExcursionsRepository().getExcursions();
-    setState(() {});
   }
 }

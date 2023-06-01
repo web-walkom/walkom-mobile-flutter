@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 
 class ExcursionScreen extends StatefulWidget {
   const ExcursionScreen({super.key});
@@ -9,6 +11,12 @@ class ExcursionScreen extends StatefulWidget {
 
 class _ExcursionScreenState extends State<ExcursionScreen> {
   String? excursionId;
+  ExcursionOpen? excursion;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
@@ -27,6 +35,13 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
         title: Text(excursionId ?? '...'),
         centerTitle: true,
       ),
+      body:
+          (excursion == null) ? const SizedBox() : Text(excursion!.description),
     );
+  }
+
+  Future<void> __loadExcursionById(String id) async {
+    excursion = await GetIt.I<ExcursionsRepository>().getExcursionById(id);
+    setState(() {});
   }
 }
