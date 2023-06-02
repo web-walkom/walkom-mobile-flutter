@@ -17,7 +17,7 @@ class ExcursionsListLoaded extends ExcursionsListState {
     required this.excursionsList,
   });
 
-  final List<ExcursionItem> excursionsList;
+  final List<Excursion> excursionsList;
 
   @override
   List<Object?> get props => [excursionsList];

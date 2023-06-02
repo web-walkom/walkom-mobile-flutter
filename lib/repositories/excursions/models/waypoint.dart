@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'waypoint.g.dart';
+
+@JsonSerializable()
 class Waypoint {
   const Waypoint({
     required this.id,

@@ -29,8 +29,19 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Экскурсии'),
-        centerTitle: true,
+        title: const Padding(
+          padding: EdgeInsets.only(
+            top: 22.0,
+            left: 15.0,
+          ),
+          child: Text(
+            'Экскурсии',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 30,
+            ),
+          ),
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -43,7 +54,7 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
           builder: (context, state) {
             if (state is ExcursionsListLoaded) {
               return ListView.builder(
-                padding: const EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
                 itemCount: state.excursionsList.length,
                 itemBuilder: (context, i) {
                   return ExcursionTile(excursion: state.excursionsList[i]);

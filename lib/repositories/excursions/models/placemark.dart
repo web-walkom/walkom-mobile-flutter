@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'placemark.g.dart';
+
+@JsonSerializable()
 class Placemark {
   final String id;
   final String title;
@@ -12,8 +17,4 @@ class Placemark {
     required this.latitude,
     required this.longitude,
   });
-
-  // static fromJson(jsonDecode) {
-  //   id = jsonDecode['id'];
-  // }
 }

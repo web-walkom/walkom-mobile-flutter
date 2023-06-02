@@ -9,41 +9,33 @@ class ExcursionsRepositoryImpl implements ExcursionsRepository {
   final Dio dio;
 
   @override
-  Future<List<ExcursionItem>> getExcursions() async {
+  Future<List<Excursion>> getExcursions() async {
     final response = await Dio().get('https://api.walkom.ru/api/excursions');
-    final data = response.data as List<dynamic>;
-
-    final excursionsList = data
-        .map((e) => ExcursionItem(
-              id: e['id'],
-              title: e['title'],
-              photos: List<String>.from(e['photos']),
-            ))
+    return (response.data as List<dynamic>)
+        .map((e) => Excursion.fromJson(e))
         .toList();
-    return excursionsList;
   }
 
   @override
-  Future<ExcursionOpen> getExcursionById(String id) async {
+  Future<ExcursionDetail> getExcursionById(String id) async {
     final response =
         await Dio().get('https://api.walkom.ru/api/excursions/$id');
-    final data = response.data as Map<String, dynamic>;
+    return ExcursionDetail.fromJson(response.data as Map<String, dynamic>);
 
-    final excursion = ExcursionOpen(
-      id: data['id'],
-      title: data['title'],
-      description: data['description'],
-      photos: List<String>.from(data['photos']),
-      // placemarks: data['placemarks'].map(
-      //   (e) => Placemark(
-      //     id: e['id'],
-      //     title: e['title'],
-      //     photos: List<String>.from(e['photos']),
-      //     latitude: e['latitude'],
-      //     longitude: e['longitude'],
-      //   ),
-      // ),
-    );
-    return excursion;
+    // return ExcursionDetail(
+    //   id: id,
+    //   title: data['title'],
+    //   photos: List<String>.from(data['photos']),
+    //   description: data['description'],
+    //   placemarks: data['placemarks'].map(
+    //     (e) => Placemark(
+    //       id: e['id'],
+    //       title: e['title'],
+    //       photos: List<String>.from(e['photos']),
+    //       latitude: e['latitude'],
+    //       longitude: e['longitude'],
+    //     ),
+    //   ),
+    // );
   }
 }
