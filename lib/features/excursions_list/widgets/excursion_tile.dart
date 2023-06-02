@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/models/excursion.dart';
+import 'package:walkom_mobile_flutter/router/router.dart';
 
 class ExcursionTile extends StatelessWidget {
   const ExcursionTile({
@@ -24,10 +26,7 @@ class ExcursionTile extends StatelessWidget {
       child: InkWell(
         borderRadius: borderRadius,
         onTap: () {
-          Navigator.of(context).pushNamed(
-            '/excursion',
-            arguments: excursion.id,
-          );
+          AutoRouter.of(context).push(ExcursionRoute(excursion: excursion));
         },
         child: Column(
           children: [
@@ -40,11 +39,9 @@ class ExcursionTile extends StatelessWidget {
                   height: 280,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10.0,
-                    left: 15.0,
-                    right: 15.0,
-                    bottom: 10.0,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 15.0,
                   ),
                   child: Text(
                     excursion.title,

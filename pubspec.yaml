@@ -16,6 +16,8 @@ dependencies:
   equatable: ^2.0.5
   talker_flutter: ^2.4.3
   json_annotation: ^4.8.1
+  hive_flutter: ^1.1.0
+  auto_route: ^7.4.0
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +25,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   json_serializable: ^6.7.0
   build_runner: ^2.4.4
+  hive_generator: ^2.0.0
+  auto_route_generator: ^7.1.1
 
 flutter:
   uses-material-design: true

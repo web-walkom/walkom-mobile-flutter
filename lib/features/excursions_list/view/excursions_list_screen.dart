@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -7,6 +8,7 @@ import 'package:walkom_mobile_flutter/features/excursions_list/bloc/excursions_l
 import 'package:walkom_mobile_flutter/features/excursions_list/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 
+@RoutePage()
 class ExcursionsListScreen extends StatefulWidget {
   const ExcursionsListScreen({super.key});
 
