@@ -5,8 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:walkom_mobile_flutter/features/excursions_list/bloc/excursions_list_bloc.dart';
+import 'package:walkom_mobile_flutter/features/excursions_list/widgets/header.dart';
 import 'package:walkom_mobile_flutter/features/excursions_list/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
+import 'package:walkom_mobile_flutter/styles/color.dart';
+import 'package:walkom_mobile_flutter/widgets/error_load.dart';
+import 'package:walkom_mobile_flutter/widgets/loader.dart';
 
 @RoutePage()
 class ExcursionsListScreen extends StatefulWidget {
@@ -39,17 +43,11 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
                 margin: const EdgeInsets.only(top: 60),
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Экскурсии',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 34,
-                      ),
-                    ),
+                    const Header(),
                     Expanded(
                       child: RefreshIndicator(
+                        color: darkGray,
                         onRefresh: () async {
                           final completer = Completer();
                           _excursionsListBloc
@@ -72,35 +70,14 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
                             }
 
                             if (state is ExcursionsListError) {
-                              return Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Text('Ошибка при получении данных'),
-                                    const SizedBox(height: 10),
-                                    TextButton(
-                                      onPressed: () {
-                                        _excursionsListBloc
-                                            .add(LoadExcursionsList());
-                                      },
-                                      child: const Text('Попробвать снова'),
-                                    )
-                                  ],
-                                ),
+                              return ErrorLoad(
+                                tryAgain: () {
+                                  _excursionsListBloc.add(LoadExcursionsList());
+                                },
                               );
                             }
 
-                            return const Center(
-                              child: SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(
-                                  color: Colors.black,
-                                  strokeWidth: 1.5,
-                                ),
-                              ),
-                            );
+                            return const Loader();
                           },
                         ),
                       ),

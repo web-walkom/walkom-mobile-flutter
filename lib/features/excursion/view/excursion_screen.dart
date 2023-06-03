@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/features/excursion/bloc/excursion_bloc.dart';
+import 'package:walkom_mobile_flutter/features/excursion/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
-import 'package:walkom_mobile_flutter/styles/button.dart';
-import 'package:walkom_mobile_flutter/styles/color.dart';
+import 'package:walkom_mobile_flutter/widgets/button.dart';
+import 'package:walkom_mobile_flutter/widgets/error_load.dart';
+import 'package:walkom_mobile_flutter/widgets/loader.dart';
 
 @RoutePage()
 class ExcursionScreen extends StatefulWidget {
@@ -35,7 +38,7 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
+      value: SystemUiOverlayStyle.dark,
       child: Scaffold(
         backgroundColor: Colors.white,
         body: BlocBuilder<ExcursionBloc, ExcursionState>(
@@ -43,43 +46,11 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
           builder: (context, state) {
             return Stack(
               children: [
-                Positioned(
+                const Positioned(
                   top: 45,
                   left: 25,
                   right: 25,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Ink(
-                        width: 45,
-                        height: 45,
-                        child: IconButton(
-                          onPressed: () {
-                            AutoRouter.of(context).pop();
-                          },
-                          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                          color: Colors.white,
-                          style: IconButton.styleFrom(
-                            backgroundColor: blackTransparent,
-                          ),
-                        ),
-                      ),
-                      Ink(
-                        width: 45,
-                        height: 45,
-                        child: IconButton(
-                          onPressed: () {
-                            __actionsExcursion(context);
-                          },
-                          icon: const Icon(Icons.more_vert_rounded),
-                          color: Colors.white,
-                          style: IconButton.styleFrom(
-                            backgroundColor: blackTransparent,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                  child: ActionsHeader(),
                 ),
                 Positioned(
                   left: 0,
@@ -103,7 +74,7 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                           BorderRadius.vertical(top: Radius.circular(45.0)),
                     ),
                     child: Column(children: [
-                      Text(
+                      SelectableText(
                         widget.excursion.title,
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
@@ -113,7 +84,7 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                       ),
                       const SizedBox(height: 15),
                       (state is ExcursionLoaded)
-                          ? Text(
+                          ? SelectableText(
                               state.excursion.description,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w400,
@@ -122,136 +93,25 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                               ),
                             )
                           : (state is ExcursionError)
-                              ? Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const Text('Ошибка при получении данных'),
-                                      TextButton(
-                                        onPressed: () {
-                                          _excursionBloc.add(LoadExcursion(
-                                              excursionId:
-                                                  widget.excursion.id));
-                                        },
-                                        child: const Text('Попробвать снова'),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              : const Expanded(
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: SizedBox(
-                                      height: 20,
-                                      width: 20,
-                                      child: CircularProgressIndicator(
-                                        color: Colors.black,
-                                        strokeWidth: 1.5,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                              ? ErrorLoad(tryAgain: () {
+                                  _excursionBloc.add(LoadExcursion(
+                                      excursionId: widget.excursion.id));
+                                })
+                              : const Loader()
                     ]),
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   bottom: 20,
                   left: 30,
                   right: 30,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: buttonPrimary,
-                    child: const Text("Запустить"),
-                  ),
+                  child: MainButton(title: BUTTON_RUN_EXCURSION),
                 ),
               ],
             );
           },
         ),
       ),
-    );
-  }
-
-  __actionsExcursion(context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
-      builder: (BuildContext c) {
-        return SizedBox(
-          height: 140,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(height: 15),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  contentPadding: EdgeInsets.only(left: 20, right: 20),
-                  leading: Icon(Icons.bookmark_rounded),
-                  title: Text("Добавить в избранное"),
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  contentPadding: EdgeInsets.only(left: 20, right: 20),
-                  leading: Icon(Icons.delete_rounded),
-                  title: Text("Удалить файлы экскурсии"),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  __actionsExcursionRounded(context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(45))),
-      builder: (BuildContext c) {
-        return Container(
-          height: 200,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.only(top: 25, left: 30, right: 30),
-                child: Text(
-                  "Выберите действие",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  contentPadding: EdgeInsets.only(left: 30, right: 30),
-                  leading: Icon(Icons.bookmark_rounded),
-                  title: Text("Добавить в избранное"),
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  contentPadding: EdgeInsets.only(left: 30, right: 30),
-                  leading: Icon(Icons.delete_rounded),
-                  title: Text("Удалить файлы экскурсии"),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
     );
   }
 }

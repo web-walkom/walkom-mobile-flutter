@@ -13,7 +13,7 @@ class ExcursionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = BorderRadius.circular(30);
+    final borderRadius = BorderRadius.circular(35);
 
     return Card(
       color: Colors.white,

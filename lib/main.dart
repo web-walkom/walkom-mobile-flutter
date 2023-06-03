@@ -6,8 +6,15 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:walkom_mobile_flutter/app.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ),
+  );
+
   final talker = TalkerFlutter.init();
 
   GetIt.I.registerSingleton(talker);
