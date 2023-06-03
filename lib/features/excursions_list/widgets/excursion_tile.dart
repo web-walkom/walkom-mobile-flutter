@@ -13,7 +13,7 @@ class ExcursionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = BorderRadius.circular(25);
+    final borderRadius = BorderRadius.circular(30);
 
     return Card(
       color: Colors.white,
@@ -40,8 +40,8 @@ class ExcursionTile extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 15.0,
+                    vertical: 15.0,
+                    horizontal: 20.0,
                   ),
                   child: Text(
                     excursion.title,

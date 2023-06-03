@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:walkom_mobile_flutter/features/excursions_list/bloc/excursions_list_bloc.dart';
@@ -29,72 +29,86 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Padding(
-          padding: EdgeInsets.only(
-            top: 22.0,
-            left: 15.0,
-          ),
-          child: Text(
-            'Экскурсии',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 30,
-            ),
-          ),
-        ),
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          final completer = Completer();
-          _excursionsListBloc.add(LoadExcursionsList(completer: completer));
-          return completer.future;
-        },
-        child: BlocBuilder<ExcursionsListBloc, ExcursionsListState>(
-          bloc: _excursionsListBloc,
-          builder: (context, state) {
-            if (state is ExcursionsListLoaded) {
-              return ListView.builder(
-                padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
-                itemCount: state.excursionsList.length,
-                itemBuilder: (context, i) {
-                  return ExcursionTile(excursion: state.excursionsList[i]);
-                },
-              );
-            }
-
-            if (state is ExcursionsListError) {
-              return Center(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        body: StreamBuilder<Object>(
+            stream: null,
+            builder: (context, snapshot) {
+              return Container(
+                margin: const EdgeInsets.only(top: 60),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Ошибка при получении данных'),
-                    const SizedBox(height: 10),
-                    TextButton(
-                      onPressed: () {
-                        _excursionsListBloc.add(LoadExcursionsList());
-                      },
-                      child: const Text('Попробвать снова'),
-                    )
+                    const Text(
+                      'Экскурсии',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 34,
+                      ),
+                    ),
+                    Expanded(
+                      child: RefreshIndicator(
+                        onRefresh: () async {
+                          final completer = Completer();
+                          _excursionsListBloc
+                              .add(LoadExcursionsList(completer: completer));
+                          return completer.future;
+                        },
+                        child: BlocBuilder<ExcursionsListBloc,
+                            ExcursionsListState>(
+                          bloc: _excursionsListBloc,
+                          builder: (context, state) {
+                            if (state is ExcursionsListLoaded) {
+                              return ListView.builder(
+                                padding: const EdgeInsets.only(top: 25),
+                                itemCount: state.excursionsList.length,
+                                itemBuilder: (context, i) {
+                                  return ExcursionTile(
+                                      excursion: state.excursionsList[i]);
+                                },
+                              );
+                            }
+
+                            if (state is ExcursionsListError) {
+                              return Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text('Ошибка при получении данных'),
+                                    const SizedBox(height: 10),
+                                    TextButton(
+                                      onPressed: () {
+                                        _excursionsListBloc
+                                            .add(LoadExcursionsList());
+                                      },
+                                      child: const Text('Попробвать снова'),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }
+
+                            return const Center(
+                              child: SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.black,
+                                  strokeWidth: 1.5,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               );
-            }
-
-            return const Center(
-              child: SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(
-                  color: Colors.black,
-                  strokeWidth: 1.5,
-                ),
-              ),
-            );
-          },
-        ),
+            }),
       ),
     );
   }
