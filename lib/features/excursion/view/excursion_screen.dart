@@ -7,6 +7,7 @@ import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/features/excursion/bloc/excursion_bloc.dart';
 import 'package:walkom_mobile_flutter/features/excursion/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
+import 'package:walkom_mobile_flutter/router/router.dart';
 import 'package:walkom_mobile_flutter/widgets/button.dart';
 import 'package:walkom_mobile_flutter/widgets/error_load.dart';
 import 'package:walkom_mobile_flutter/widgets/loader.dart';
@@ -109,7 +110,9 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                   right: 30,
                   child: MainButton(
                     title: BUTTON_RUN_EXCURSION,
-                    pressedFunc: () {},
+                    pressedFunc: () {
+                      AutoRouter.of(context).push(const MapRoute());
+                    },
                   ),
                 ),
               ],

@@ -18,6 +18,7 @@ dependencies:
   json_annotation: ^4.8.1
   hive_flutter: ^1.1.0
   auto_route: ^7.4.0
+  flutter_osm_plugin: ^0.55.1
 
 dev_dependencies:
   flutter_test:
