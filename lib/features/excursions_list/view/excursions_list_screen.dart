@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:walkom_mobile_flutter/features/excursions_list/bloc/excursions_list_bloc.dart';
-import 'package:walkom_mobile_flutter/features/excursions_list/widgets/header.dart';
 import 'package:walkom_mobile_flutter/features/excursions_list/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 import 'package:walkom_mobile_flutter/styles/color.dart';

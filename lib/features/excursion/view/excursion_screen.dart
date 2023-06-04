@@ -83,21 +83,23 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                         ),
                       ),
                       const SizedBox(height: 15),
-                      (state is ExcursionLoaded)
-                          ? SelectableText(
-                              state.excursion.description,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                color: Colors.black,
-                              ),
-                            )
-                          : (state is ExcursionError)
-                              ? ErrorLoad(tryAgain: () {
-                                  _excursionBloc.add(LoadExcursion(
-                                      excursionId: widget.excursion.id));
-                                })
-                              : const Loader()
+                      Expanded(
+                        child: (state is ExcursionLoaded)
+                            ? SelectableText(
+                                state.excursion.description,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                ),
+                              )
+                            : (state is ExcursionError)
+                                ? ErrorLoad(tryAgain: () {
+                                    _excursionBloc.add(LoadExcursion(
+                                        excursionId: widget.excursion.id));
+                                  })
+                                : const Loader(),
+                      )
                     ]),
                   ),
                 ),

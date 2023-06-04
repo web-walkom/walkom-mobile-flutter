@@ -11,16 +11,16 @@ class ExcursionDetail extends Equatable {
     required this.title,
     required this.photos,
     required this.description,
-    // required this.placemarks,
-    // required this.waypoints,
+    required this.placemarks,
+    required this.waypoints,
   });
 
   final String id;
   final String title;
   final List<String> photos;
   final String description;
-  // final List<Placemark> placemarks;
-  // final List<Waypoint> waypoints;
+  final List<Placemark> placemarks;
+  final List<Waypoint> waypoints;
 
   factory ExcursionDetail.fromJson(Map<String, dynamic> json) =>
       _$ExcursionDetailFromJson(json);

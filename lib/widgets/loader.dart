@@ -7,16 +7,14 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
-      child: Align(
-        alignment: Alignment.center,
-        child: SizedBox(
-          height: 20,
-          width: 20,
-          child: CircularProgressIndicator(
-            color: Colors.black,
-            strokeWidth: 1.5,
-          ),
+    return const Align(
+      alignment: Alignment.center,
+      child: SizedBox(
+        height: 20,
+        width: 20,
+        child: CircularProgressIndicator(
+          color: Colors.black,
+          strokeWidth: 1.5,
         ),
       ),
     );

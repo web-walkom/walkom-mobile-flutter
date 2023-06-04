@@ -13,6 +13,12 @@ ExcursionDetail _$ExcursionDetailFromJson(Map<String, dynamic> json) =>
       photos:
           (json['photos'] as List<dynamic>).map((e) => e as String).toList(),
       description: json['description'] as String,
+      placemarks: (json['placemarks'] as List<dynamic>)
+          .map((e) => Placemark.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      waypoints: (json['waypoints'] as List<dynamic>)
+          .map((e) => Waypoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ExcursionDetailToJson(ExcursionDetail instance) =>
@@ -21,4 +27,6 @@ Map<String, dynamic> _$ExcursionDetailToJson(ExcursionDetail instance) =>
       'title': instance.title,
       'photos': instance.photos,
       'description': instance.description,
+      'placemarks': instance.placemarks,
+      'waypoints': instance.waypoints,
     };
