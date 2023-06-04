@@ -2,6 +2,10 @@
 const TEXT_EXCURSIONS = "Экскурсии";
 const TEXT_ADD_FAVORITE = "Добавить в избранное";
 const TEXT_DELETE_FILES = "Удалить файлы экскурсии";
+const TEXT_FAVORITE = "Избранное";
+const TEXT_DATA_AND_MEMORY = "Данные и память";
+const TEXT_SETTINGS = "Настройки";
+const TEXT_ABOUT_APP = "О приложении";
 const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
 

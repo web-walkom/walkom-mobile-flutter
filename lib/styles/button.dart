@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/styles/color.dart';
 
 final ButtonStyle buttonPrimary = ElevatedButton.styleFrom(
-  minimumSize: const Size(324, 55),
+  minimumSize: const Size(324, 53),
   backgroundColor: green,
   foregroundColor: Colors.white,
   elevation: 0,

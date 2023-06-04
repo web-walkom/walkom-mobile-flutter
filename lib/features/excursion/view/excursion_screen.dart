@@ -103,11 +103,14 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                     ]),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   bottom: 20,
                   left: 30,
                   right: 30,
-                  child: MainButton(title: BUTTON_RUN_EXCURSION),
+                  child: MainButton(
+                    title: BUTTON_RUN_EXCURSION,
+                    pressedFunc: () {},
+                  ),
                 ),
               ],
             );
