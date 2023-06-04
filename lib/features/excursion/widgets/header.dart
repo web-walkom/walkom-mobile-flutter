@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
+import 'package:walkom_mobile_flutter/features/excursion/widgets/action_item.dart';
 import 'package:walkom_mobile_flutter/styles/color.dart';
 
 class ActionsHeader extends StatelessWidget {
@@ -48,32 +49,32 @@ class ActionsHeader extends StatelessWidget {
   actionsExcursion(context) {
     showModalBottomSheet(
       context: context,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
       builder: (BuildContext c) {
-        return SizedBox(
-          height: 140,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(height: 15),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  contentPadding: EdgeInsets.only(left: 20, right: 20),
-                  leading: Icon(Icons.bookmark_outline_rounded),
-                  title: Text(TEXT_ADD_FAVORITE),
+        return const SingleChildScrollView(
+          child: Card(
+            elevation: 0,
+            margin: EdgeInsets.all(0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: [
+                // SizedBox(height: 10),
+                ActionItem(
+                  title: TEXT_ADD_FAVORITE,
+                  icon: Icons.bookmark_rounded,
                 ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  contentPadding: EdgeInsets.only(left: 20, right: 20),
-                  leading: Icon(Icons.delete_outline_rounded),
-                  title: Text(TEXT_DELETE_FILES),
+                ActionItem(
+                  title: TEXT_REPORT_ERROR,
+                  icon: Icons.report_rounded,
                 ),
-              ),
-            ],
+                ActionItem(
+                  title: TEXT_DELETE_FILES,
+                  icon: Icons.delete_rounded,
+                ),
+              ],
+            ),
           ),
         );
       },

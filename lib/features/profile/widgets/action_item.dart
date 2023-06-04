@@ -24,14 +24,18 @@ class ActionItem extends StatelessWidget {
                 Icon(
                   icon,
                   color: const Color(0xFF414141),
-                  size: 22,
+                  size: 21,
                 ),
-                const SizedBox(width: 10),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Color(0xFF414141),
+                const SizedBox(width: 12),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.62,
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Color(0xFF414141),
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -39,7 +43,7 @@ class ActionItem extends StatelessWidget {
             const Icon(
               Icons.arrow_forward_ios_rounded,
               color: Color(0xFF414141),
-              size: 20,
+              size: 18,
             )
           ],
         ),

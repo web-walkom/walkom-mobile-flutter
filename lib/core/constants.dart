@@ -1,11 +1,15 @@
 // Text
 const TEXT_EXCURSIONS = "Экскурсии";
 const TEXT_ADD_FAVORITE = "Добавить в избранное";
+const TEXT_REPORT_ERROR = "Сообщить об ошибке";
 const TEXT_DELETE_FILES = "Удалить файлы экскурсии";
+const TEXT_PERSONAL_DATA = "Личные данные";
 const TEXT_FAVORITE = "Избранное";
 const TEXT_DATA_AND_MEMORY = "Данные и память";
 const TEXT_SETTINGS = "Настройки";
+const TEXT_DECORATION = "Оформление";
 const TEXT_ABOUT_APP = "О приложении";
+const TEXT_PRIVACY_POLICY = "Политика конфиденциальности";
 const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
 

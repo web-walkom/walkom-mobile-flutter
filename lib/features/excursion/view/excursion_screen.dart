@@ -47,7 +47,7 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
             return Stack(
               children: [
                 const Positioned(
-                  top: 45,
+                  top: 50,
                   left: 25,
                   right: 25,
                   child: ActionsHeader(),

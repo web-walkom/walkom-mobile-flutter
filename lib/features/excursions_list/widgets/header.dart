@@ -28,7 +28,7 @@ class Header extends StatelessWidget {
             onPressed: () {
               AutoRouter.of(context).push(const ProfileRoute());
             },
-            icon: const Icon(Icons.person_outline_rounded),
+            icon: const Icon(Icons.person_rounded),
             color: Colors.black,
             style: IconButton.styleFrom(
               backgroundColor: background,

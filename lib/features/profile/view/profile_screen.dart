@@ -21,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         stream: null,
         builder: (context, snapshot) {
           return Container(
-            margin: const EdgeInsets.only(top: 60),
+            margin: const EdgeInsets.only(top: 50),
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: const Column(
               children: [
