@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
+import 'package:walkom_mobile_flutter/domain/models/action_menu_child.dart';
 import 'package:walkom_mobile_flutter/styles/color.dart';
 import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
@@ -16,6 +17,19 @@ class AboutAppScreen extends StatefulWidget {
 }
 
 class _AboutAppScreenState extends State<AboutAppScreen> {
+  final actionMenu = [
+    ActionMenuChild(
+      title: TEXT_SUPPORT,
+      icon: Icons.contact_support_rounded,
+      onClick: () {},
+    ),
+    ActionMenuChild(
+      title: TEXT_RATE_APP,
+      icon: Icons.star_rounded,
+      onClick: () {},
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MainScreen(
@@ -45,27 +59,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
             ),
           ),
           const SizedBox(height: 5),
-          ActionMenu(
-            child: Column(
-              children: [
-                ActionMenuItem(
-                  title: TEXT_SUPPORT,
-                  icon: Icons.contact_support_rounded,
-                  onClick: () {},
-                ),
-                const Divider(
-                  color: Colors.white,
-                  thickness: 2,
-                  height: 2,
-                ),
-                ActionMenuItem(
-                  title: TEXT_RATE_APP,
-                  icon: Icons.star_rounded,
-                  onClick: () {},
-                ),
-              ],
-            ),
-          )
+          ActionMenu(listChild: actionMenu)
         ],
       ),
     );
