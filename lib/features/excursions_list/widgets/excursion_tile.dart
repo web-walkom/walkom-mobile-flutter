@@ -18,7 +18,7 @@ class ExcursionTile extends StatelessWidget {
     return Card(
       color: Colors.white,
       shadowColor: Colors.black,
-      elevation: 5,
+      elevation: 1,
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
       ),

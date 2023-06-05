@@ -59,6 +59,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
             ),
           ),
           const SizedBox(height: 5),
+          const SizedBox(height: 20),
           ActionMenu(listChild: actionMenu)
         ],
       ),

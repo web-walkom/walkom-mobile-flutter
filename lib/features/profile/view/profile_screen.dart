@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/domain/models/action_menu_child.dart';
+import 'package:walkom_mobile_flutter/features/profile/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/router/router.dart';
 import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
@@ -68,9 +69,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         children: [
           const Toolbar(title: TEXT_PROFILE),
+          const SizedBox(height: 20),
+          const UserCard(
+            name: "Vanya Ivanov",
+            email: "user@gmail.com",
+            photo: "http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg",
+          ),
+          const SizedBox(height: 20),
           ActionMenu(
             listChild: actionMenuMain,
           ),
+          const SizedBox(height: 20),
           ActionMenu(
             listChild: actionMenuAdditional,
           ),

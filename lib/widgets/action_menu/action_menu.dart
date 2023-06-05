@@ -37,7 +37,7 @@ class ActionMenu extends StatelessWidget {
     );
 
     return Card(
-      margin: const EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.all(0),
       elevation: 0,
       color: const Color(0xFFF0F0F0),
       shape: RoundedRectangleBorder(
