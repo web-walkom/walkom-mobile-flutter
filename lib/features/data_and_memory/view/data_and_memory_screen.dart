@@ -1,28 +1,26 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
-import 'package:walkom_mobile_flutter/features/profile/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/widgets/header.dart';
 import 'package:walkom_mobile_flutter/widgets/main_screen.dart';
 
 @RoutePage()
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({
+class DataAndMemoryScreen extends StatefulWidget {
+  const DataAndMemoryScreen({
     super.key,
   });
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<DataAndMemoryScreen> createState() => _DataAndMemoryScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _DataAndMemoryScreenState extends State<DataAndMemoryScreen> {
   @override
   Widget build(BuildContext context) {
     return const MainScreen(
       child: Column(
         children: [
-          Header(title: TEXT_PROFILE),
-          ListActions(),
+          Header(title: TEXT_DATA_AND_MEMORY),
         ],
       ),
     );

@@ -15,10 +15,34 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AboutAppRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AboutAppScreen(),
+      );
+    },
     ExcursionsListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ExcursionsListScreen(),
+      );
+    },
+    OSMMapRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OSMMapScreen(),
+      );
+    },
+    GoogleMapRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const GoogleMapScreen(),
+      );
+    },
+    ProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProfileScreen(),
       );
     },
     ExcursionRoute.name: (routeData) {
@@ -31,19 +55,45 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ProfileRoute.name: (routeData) {
+    FavoriteRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProfileScreen(),
+        child: const FavoriteScreen(),
       );
     },
-    MapRoute.name: (routeData) {
+    PersonalDataRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MapScreen(),
+        child: const PersonalDataScreen(),
+      );
+    },
+    DecorationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DecorationScreen(),
+      );
+    },
+    DataAndMemoryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DataAndMemoryScreen(),
       );
     },
   };
+}
+
+/// generated route for
+/// [AboutAppScreen]
+class AboutAppRoute extends PageRouteInfo<void> {
+  const AboutAppRoute({List<PageRouteInfo>? children})
+      : super(
+          AboutAppRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AboutAppRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -56,6 +106,48 @@ class ExcursionsListRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ExcursionsListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OSMMapScreen]
+class OSMMapRoute extends PageRouteInfo<void> {
+  const OSMMapRoute({List<PageRouteInfo>? children})
+      : super(
+          OSMMapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OSMMapRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GoogleMapScreen]
+class GoogleMapRoute extends PageRouteInfo<void> {
+  const GoogleMapRoute({List<PageRouteInfo>? children})
+      : super(
+          GoogleMapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GoogleMapRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -99,29 +191,57 @@ class ExcursionRouteArgs {
 }
 
 /// generated route for
-/// [ProfileScreen]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute({List<PageRouteInfo>? children})
+/// [FavoriteScreen]
+class FavoriteRoute extends PageRouteInfo<void> {
+  const FavoriteRoute({List<PageRouteInfo>? children})
       : super(
-          ProfileRoute.name,
+          FavoriteRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProfileRoute';
+  static const String name = 'FavoriteRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [MapScreen]
-class MapRoute extends PageRouteInfo<void> {
-  const MapRoute({List<PageRouteInfo>? children})
+/// [PersonalDataScreen]
+class PersonalDataRoute extends PageRouteInfo<void> {
+  const PersonalDataRoute({List<PageRouteInfo>? children})
       : super(
-          MapRoute.name,
+          PersonalDataRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MapRoute';
+  static const String name = 'PersonalDataRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [DecorationScreen]
+class DecorationRoute extends PageRouteInfo<void> {
+  const DecorationRoute({List<PageRouteInfo>? children})
+      : super(
+          DecorationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DecorationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [DataAndMemoryScreen]
+class DataAndMemoryRoute extends PageRouteInfo<void> {
+  const DataAndMemoryRoute({List<PageRouteInfo>? children})
+      : super(
+          DataAndMemoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DataAndMemoryRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -1,8 +1,12 @@
+// Keys
+const GOOGLE_API_KEY = "AIzaSyDUMWb2ozasrHT-e3TLhDzGG-KHPyztW2k";
+
 // Text
 const TEXT_EXCURSIONS = "Экскурсии";
 const TEXT_ADD_FAVORITE = "Добавить в избранное";
 const TEXT_REPORT_ERROR = "Сообщить об ошибке";
 const TEXT_DELETE_FILES = "Удалить файлы экскурсии";
+const TEXT_PROFILE = "Профиль";
 const TEXT_PERSONAL_DATA = "Личные данные";
 const TEXT_FAVORITE = "Избранное";
 const TEXT_DATA_AND_MEMORY = "Данные и память";

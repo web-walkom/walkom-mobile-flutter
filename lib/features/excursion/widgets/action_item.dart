@@ -15,7 +15,7 @@ class ActionItem extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 20),
         child: Row(
           children: [
             Icon(

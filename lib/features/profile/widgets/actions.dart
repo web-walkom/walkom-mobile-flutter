@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/features/profile/widgets/action_item.dart';
+import 'package:walkom_mobile_flutter/router/router.dart';
 
 class ListActions extends StatelessWidget {
   const ListActions({
@@ -19,13 +21,16 @@ class ListActions extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           clipBehavior: Clip.antiAlias,
-          child: const Column(
+          child: Column(
             children: [
               ActionItem(
                 title: TEXT_PERSONAL_DATA,
                 icon: Icons.person_rounded,
+                onClick: () {
+                  AutoRouter.of(context).push(const PersonalDataRoute());
+                },
               ),
-              Divider(
+              const Divider(
                 color: Colors.white,
                 thickness: 2,
                 height: 2,
@@ -33,8 +38,11 @@ class ListActions extends StatelessWidget {
               ActionItem(
                 title: TEXT_FAVORITE,
                 icon: Icons.bookmark_rounded,
+                onClick: () {
+                  AutoRouter.of(context).push(const FavoriteRoute());
+                },
               ),
-              Divider(
+              const Divider(
                 color: Colors.white,
                 thickness: 2,
                 height: 2,
@@ -42,8 +50,11 @@ class ListActions extends StatelessWidget {
               ActionItem(
                 title: TEXT_DECORATION,
                 icon: Icons.wb_sunny_rounded,
+                onClick: () {
+                  AutoRouter.of(context).push(const DecorationRoute());
+                },
               ),
-              Divider(
+              const Divider(
                 color: Colors.white,
                 thickness: 2,
                 height: 2,
@@ -51,6 +62,9 @@ class ListActions extends StatelessWidget {
               ActionItem(
                 title: TEXT_DATA_AND_MEMORY,
                 icon: Icons.storage_rounded,
+                onClick: () {
+                  AutoRouter.of(context).push(const DataAndMemoryRoute());
+                },
               ),
             ],
           ),
@@ -63,13 +77,16 @@ class ListActions extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           clipBehavior: Clip.antiAlias,
-          child: const Column(
+          child: Column(
             children: [
               ActionItem(
                 title: TEXT_ABOUT_APP,
                 icon: Icons.info,
+                onClick: () {
+                  AutoRouter.of(context).push(const AboutAppRoute());
+                },
               ),
-              Divider(
+              const Divider(
                 color: Colors.white,
                 thickness: 2,
                 height: 2,
@@ -77,6 +94,7 @@ class ListActions extends StatelessWidget {
               ActionItem(
                 title: TEXT_PRIVACY_POLICY,
                 icon: Icons.verified_user_rounded,
+                onClick: () {},
               ),
             ],
           ),

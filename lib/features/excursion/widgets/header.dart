@@ -60,7 +60,7 @@ class ActionsHeader extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: Column(
               children: [
-                // SizedBox(height: 10),
+                SizedBox(height: 10),
                 ActionItem(
                   title: TEXT_ADD_FAVORITE,
                   icon: Icons.bookmark_rounded,
@@ -73,6 +73,7 @@ class ActionsHeader extends StatelessWidget {
                   title: TEXT_DELETE_FILES,
                   icon: Icons.delete_rounded,
                 ),
+                SizedBox(height: 10)
               ],
             ),
           ),

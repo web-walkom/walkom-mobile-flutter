@@ -111,7 +111,8 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                   child: MainButton(
                     title: BUTTON_RUN_EXCURSION,
                     pressedFunc: () {
-                      AutoRouter.of(context).push(const MapRoute());
+                      // AutoRouter.of(context).push(const OSMMapRoute());
+                      AutoRouter.of(context).push(const GoogleMapRoute());
                     },
                   ),
                 ),

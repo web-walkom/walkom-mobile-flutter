@@ -5,15 +5,19 @@ class ActionItem extends StatelessWidget {
     super.key,
     required this.title,
     required this.icon,
+    required this.onClick,
   });
 
   final String title;
   final IconData icon;
+  final Function onClick;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        onClick();
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 13),
         child: Row(
