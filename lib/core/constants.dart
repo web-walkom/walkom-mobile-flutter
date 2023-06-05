@@ -1,3 +1,7 @@
+// System
+const VERSION = "1.0.0+1";
+const DATE_BUILD = "05.06.2023";
+
 // Keys
 const GOOGLE_API_KEY = "AIzaSyDUMWb2ozasrHT-e3TLhDzGG-KHPyztW2k";
 
@@ -16,6 +20,8 @@ const TEXT_ABOUT_APP = "О приложении";
 const TEXT_PRIVACY_POLICY = "Политика конфиденциальности";
 const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
+const TEXT_SUPPORT = "Поддержка";
+const TEXT_RATE_APP = "Оценить приложение";
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";

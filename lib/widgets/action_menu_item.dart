@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ActionItem extends StatelessWidget {
-  const ActionItem({
+class ActionMenuItem extends StatelessWidget {
+  const ActionMenuItem({
     super.key,
     required this.title,
     required this.icon,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ActionItem extends StatelessWidget {
-  const ActionItem({
+class ModalBottomSheetItem extends StatelessWidget {
+  const ModalBottomSheetItem({
     super.key,
     required this.title,
     required this.icon,

@@ -8,8 +8,7 @@ import 'package:walkom_mobile_flutter/features/excursions_list/bloc/excursions_l
 import 'package:walkom_mobile_flutter/features/excursions_list/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 import 'package:walkom_mobile_flutter/styles/color.dart';
-import 'package:walkom_mobile_flutter/widgets/error_load.dart';
-import 'package:walkom_mobile_flutter/widgets/loader.dart';
+import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
 @RoutePage()
 class ExcursionsListScreen extends StatefulWidget {
@@ -43,7 +42,7 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
                   children: [
-                    const Header(),
+                    const ExcursionsToolbar(),
                     Expanded(
                       child: RefreshIndicator(
                         color: darkGray,

@@ -4,8 +4,8 @@ import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/router/router.dart';
 import 'package:walkom_mobile_flutter/styles/color.dart';
 
-class Header extends StatelessWidget {
-  const Header({
+class ExcursionsToolbar extends StatelessWidget {
+  const ExcursionsToolbar({
     super.key,
   });
 

@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
-import 'package:walkom_mobile_flutter/widgets/header.dart';
-import 'package:walkom_mobile_flutter/widgets/main_screen.dart';
+import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
 @RoutePage()
 class DataAndMemoryScreen extends StatefulWidget {
@@ -20,7 +19,7 @@ class _DataAndMemoryScreenState extends State<DataAndMemoryScreen> {
     return const MainScreen(
       child: Column(
         children: [
-          Header(title: TEXT_DATA_AND_MEMORY),
+          Toolbar(title: TEXT_DATA_AND_MEMORY),
         ],
       ),
     );

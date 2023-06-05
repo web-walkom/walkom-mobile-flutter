@@ -8,9 +8,7 @@ import 'package:walkom_mobile_flutter/features/excursion/bloc/excursion_bloc.dar
 import 'package:walkom_mobile_flutter/features/excursion/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 import 'package:walkom_mobile_flutter/router/router.dart';
-import 'package:walkom_mobile_flutter/widgets/button.dart';
-import 'package:walkom_mobile_flutter/widgets/error_load.dart';
-import 'package:walkom_mobile_flutter/widgets/loader.dart';
+import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
 @RoutePage()
 class ExcursionScreen extends StatefulWidget {
@@ -51,7 +49,7 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                   top: 50,
                   left: 25,
                   right: 25,
-                  child: ActionsHeader(),
+                  child: ToolbarExcursion(),
                 ),
                 Positioned(
                   left: 0,
@@ -110,7 +108,7 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                   right: 30,
                   child: MainButton(
                     title: BUTTON_RUN_EXCURSION,
-                    pressedFunc: () {
+                    onClick: () {
                       // AutoRouter.of(context).push(const OSMMapRoute());
                       AutoRouter.of(context).push(const GoogleMapRoute());
                     },

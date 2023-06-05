@@ -5,17 +5,17 @@ class MainButton extends StatelessWidget {
   const MainButton({
     super.key,
     required this.title,
-    required this.pressedFunc,
+    required this.onClick,
   });
 
   final String title;
-  final Function pressedFunc;
+  final Function onClick;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        pressedFunc();
+        onClick();
       },
       style: buttonPrimary,
       child: Text(title),
