@@ -1,4 +1,5 @@
 // System
+const APP_NAME = "walkom";
 const VERSION = "1.0.0+1";
 const DATE_BUILD = "05.06.2023";
 
@@ -22,6 +23,7 @@ const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
 const TEXT_SUPPORT = "Поддержка";
 const TEXT_RATE_APP = "Оценить приложение";
+const TEXT_SEND_VERIFY_CODE = "На почту user@gmail.com был отправлен код подтверждения, введите его";
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
@@ -30,6 +32,9 @@ const BUTTON_CONTINUE = "Продолжить";
 const BUTTON_CONTINUE_AS_GUEST = "Продолжить как гость";
 const BUTTON_START_EXCURSION = "Начать экскурсию";
 const BUTTON_SHOW_AR = "Смотреть в AR";
+
+// Placeholders
+const PLACEHOLDER_ENTER_EMAIL = "Введите почту";
 
 // Folders data
 const FOLDER_AUDIO = "audios";

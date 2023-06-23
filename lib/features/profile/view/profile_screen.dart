@@ -24,7 +24,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: TEXT_PERSONAL_DATA,
         icon: Icons.person_rounded,
         onClick: () {
-          AutoRouter.of(context).push(const PersonalDataRoute());
+          // AutoRouter.of(context).push(const PersonalDataRoute());
+          AutoRouter.of(context).push(const AuthRoute());
         },
       ),
       ActionMenuChild(

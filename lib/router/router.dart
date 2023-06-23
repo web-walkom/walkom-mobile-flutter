@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/features/about_app/about_app.dart';
+import 'package:walkom_mobile_flutter/features/auth/auth.dart';
+import 'package:walkom_mobile_flutter/features/code_verify/code_verify.dart';
 import 'package:walkom_mobile_flutter/features/data_and_memory/data_and_memory.dart';
 import 'package:walkom_mobile_flutter/features/decoration/decoration.dart';
 import 'package:walkom_mobile_flutter/features/excursion/excursion.dart';
@@ -27,5 +29,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: DecorationRoute.page),
         AutoRoute(page: DataAndMemoryRoute.page),
         AutoRoute(page: AboutAppRoute.page),
+        AutoRoute(page: AuthRoute.page),
+        AutoRoute(page: CodeVerifyRoute.page),
       ];
 }

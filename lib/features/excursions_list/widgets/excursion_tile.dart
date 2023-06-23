@@ -13,7 +13,7 @@ class ExcursionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = BorderRadius.circular(35);
+    final borderRadius = BorderRadius.circular(20);
 
     return Card(
       color: Colors.white,
@@ -36,7 +36,7 @@ class ExcursionTile extends StatelessWidget {
                 Ink.image(
                   image: NetworkImage(excursion.photos[0]),
                   fit: BoxFit.cover,
-                  height: 280,
+                  height: 210,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
