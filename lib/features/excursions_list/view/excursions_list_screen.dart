@@ -58,7 +58,7 @@ class _ExcursionsListScreenState extends State<ExcursionsListScreen> {
                           builder: (context, state) {
                             if (state is ExcursionsListLoaded) {
                               return ListView.builder(
-                                padding: const EdgeInsets.only(top: 25),
+                                padding: const EdgeInsets.only(top: 35),
                                 itemCount: state.excursionsList.length,
                                 itemBuilder: (context, i) {
                                   return ExcursionTile(

@@ -23,7 +23,10 @@ const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
 const TEXT_SUPPORT = "Поддержка";
 const TEXT_RATE_APP = "Оценить приложение";
-const TEXT_SEND_VERIFY_CODE = "На почту user@gmail.com был отправлен код подтверждения, введите его";
+const TEXT_WELCOME = "Добро пожаловать!";
+const TEXT_CODE_VERIFY = "Код подтверждения";
+const TEXT_SEND_VERIFY_CODE =
+    "На почту user@gmail.com был отправлен код подтверждения, введите его";
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
