@@ -12,6 +12,7 @@ const TEXT_ADD_FAVORITE = "Добавить в избранное";
 const TEXT_REPORT_ERROR = "Сообщить об ошибке";
 const TEXT_DELETE_FILES = "Удалить файлы экскурсии";
 const TEXT_PROFILE = "Профиль";
+const TEXT_AUTH = "Авторизация";
 const TEXT_PERSONAL_DATA = "Личные данные";
 const TEXT_FAVORITE = "Избранное";
 const TEXT_DATA_AND_MEMORY = "Данные и память";
@@ -19,6 +20,7 @@ const TEXT_SETTINGS = "Настройки";
 const TEXT_DECORATION = "Оформление";
 const TEXT_ABOUT_APP = "О приложении";
 const TEXT_PRIVACY_POLICY = "Политика конфиденциальности";
+const TEXT_LOGOUT = "Выйти";
 const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
 const TEXT_SUPPORT = "Поддержка";
@@ -36,12 +38,14 @@ const TEXT_RESEND_CODE_VERIFY = "Отправить еще раз";
 const BUTTON_LOAD_EXCURSION = "Скачать";
 const BUTTON_RUN_EXCURSION = "Запустить";
 const BUTTON_CONTINUE = "Продолжить";
-const BUTTON_CONTINUE_AS_GUEST = "Продолжить как гость";
+const BUTTON_SAVE = "Сохранить";
 const BUTTON_START_EXCURSION = "Начать экскурсию";
 const BUTTON_SHOW_AR = "Смотреть в AR";
 
 // Placeholders
 const PLACEHOLDER_ENTER_EMAIL = "Введите почту";
+const PLACEHOLDER_ENTER_FIRST_NAME = "Введите имя";
+const PLACEHOLDER_ENTER_LAST_NAME = "Введите фамилию";
 
 // Folders data
 const FOLDER_AUDIO = "audios";

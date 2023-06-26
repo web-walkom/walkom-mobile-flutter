@@ -120,37 +120,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    TextField(
+                    TextFieldEmail(
                       controller: _emailController,
-                      cursorColor: darkGray,
-                      decoration: InputDecoration(
-                        hintText: PLACEHOLDER_ENTER_EMAIL,
-                        hintStyle: TextStyle(
-                          color: darkGray,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        contentPadding: const EdgeInsets.all(16),
-                        fillColor: background,
-                        filled: true,
-                        suffixIcon: validEmail == true
-                            ? const Icon(
-                                Icons.check_circle_rounded,
-                                color: Colors.green,
-                              )
-                            : validEmail == false
-                                ? Icon(
-                                    Icons.error_rounded,
-                                    color: red,
-                                  )
-                                : null,
-                      ),
+                      placeholder: PLACEHOLDER_ENTER_EMAIL,
+                      validEmail: validEmail,
                     ),
                     Container(
                       padding: const EdgeInsets.only(top: 5),
@@ -166,10 +139,13 @@ class _AuthScreenState extends State<AuthScreen> {
                 children: [
                   MainButton(
                     title: BUTTON_CONTINUE,
-                    onClick: validEmail == true && state is! AuthSenting
+                    isLoading: state is AuthSenting,
+                    onClick: validEmail == true
                         ? () {
-                            _authBloc
-                                .add(AuthByEmail(email: _emailController.text));
+                            if (state is! AuthSenting) {
+                              _authBloc.add(
+                                  AuthByEmail(email: _emailController.text));
+                            }
                           }
                         : null,
                   ),

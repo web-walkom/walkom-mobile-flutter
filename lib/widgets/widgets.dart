@@ -10,3 +10,5 @@ export 'buttons/circle_button.dart';
 export 'buttons/circle_transparent_button.dart';
 export 'bottom_sheet/bottom_sheet.dart';
 export 'bottom_sheet/bottom_sheet_item.dart';
+export 'text_field/text_field_base.dart';
+export 'text_field/text_field_email.dart';

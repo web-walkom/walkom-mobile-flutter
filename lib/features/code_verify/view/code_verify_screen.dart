@@ -171,12 +171,15 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
                 children: [
                   MainButton(
                     title: BUTTON_CONTINUE,
-                    onClick: codeValid && state is! CodeVerifyChecking
+                    isLoading: state is CodeVerifyChecking,
+                    onClick: codeValid
                         ? () {
-                            _codeVerifyBloc.add(CheckSecretCode(
-                              email: widget.email,
-                              code: int.parse(_codeController.text),
-                            ));
+                            if (state is! CodeVerifyChecking) {
+                              _codeVerifyBloc.add(CheckSecretCode(
+                                email: widget.email,
+                                code: int.parse(_codeController.text),
+                              ));
+                            }
                           }
                         : null,
                   ),

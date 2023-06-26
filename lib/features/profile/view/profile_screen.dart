@@ -21,11 +21,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     final actionMenuMain = [
       ActionMenuChild(
+        title: TEXT_AUTH,
+        icon: Icons.login_rounded,
+        onClick: () {
+          AutoRouter.of(context).push(const AuthRoute());
+        },
+      ),
+      ActionMenuChild(
         title: TEXT_PERSONAL_DATA,
         icon: Icons.person_rounded,
         onClick: () {
-          // AutoRouter.of(context).push(const PersonalDataRoute());
-          AutoRouter.of(context).push(const AuthRoute());
+          AutoRouter.of(context).push(const PersonalDataRoute());
         },
       ),
       ActionMenuChild(
@@ -62,6 +68,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ActionMenuChild(
         title: TEXT_PRIVACY_POLICY,
         icon: Icons.verified_user_rounded,
+        onClick: () {},
+      ),
+      ActionMenuChild(
+        title: TEXT_LOGOUT,
+        icon: Icons.logout_rounded,
         onClick: () {},
       ),
     ];
