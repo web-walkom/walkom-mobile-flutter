@@ -33,6 +33,10 @@ const TEXT_SEND_CODE_VERIFY_PART_1 = "На почту ";
 const TEXT_SEND_CODE_VERIFY_PART_2 =
     " был отправлен код подтверждения, введите его";
 const TEXT_RESEND_CODE_VERIFY = "Отправить еще раз";
+const TEXT_THEME_APP = "Тема приложения";
+const TEXT_THEME_LIGHT = "Светлая";
+const TEXT_THEME_NIGHT = "Темная";
+const TEXT_THEME_SYSTEM = "Как в системе";
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
