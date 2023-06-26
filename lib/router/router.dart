@@ -21,7 +21,7 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(page: ExcursionsListRoute.page, path: '/'),
         AutoRoute(page: ExcursionRoute.page),
-        AutoRoute(page: ProfileRoute.page),
+        AutoRoute(page: ProfileRoute.page, path: '/profile'),
         AutoRoute(page: OSMMapRoute.page),
         AutoRoute(page: GoogleMapRoute.page),
         AutoRoute(page: PersonalDataRoute.page),

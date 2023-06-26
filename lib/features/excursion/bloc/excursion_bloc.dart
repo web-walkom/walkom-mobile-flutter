@@ -2,8 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-import 'package:walkom_mobile_flutter/repositories/excursions/excursions_repository.dart';
-import 'package:walkom_mobile_flutter/repositories/excursions/models/models.dart';
+import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 
 part 'excursions_event.dart';
 part 'excursions_state.dart';

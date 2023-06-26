@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:walkom_mobile_flutter/app.dart';
+import 'package:walkom_mobile_flutter/repositories/auth/auth.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 import 'package:flutter/services.dart';
 
@@ -21,6 +22,9 @@ void main() async {
   GetIt.I.registerSingleton(talker);
   GetIt.I.registerLazySingleton<ExcursionsRepository>(
     () => ExcursionsRepositoryImpl(dio: Dio()),
+  );
+  GetIt.I.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(dio: Dio()),
   );
 
   await Hive.initFlutter();

@@ -23,10 +23,14 @@ const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
 const TEXT_SUPPORT = "Поддержка";
 const TEXT_RATE_APP = "Оценить приложение";
-const TEXT_WELCOME = "Добро пожаловать!";
+const TEXT_AUTH_BY_EMAIL = "Войти через почту";
+const TEXT_DESCRIPTION_AUTH_BY_EMAIL =
+    "Введите почту, мы вышлем на него код подтверждения";
 const TEXT_CODE_VERIFY = "Код подтверждения";
-const TEXT_SEND_VERIFY_CODE =
-    "На почту user@gmail.com был отправлен код подтверждения, введите его";
+const TEXT_SEND_CODE_VERIFY_PART_1 = "На почту ";
+const TEXT_SEND_CODE_VERIFY_PART_2 =
+    " был отправлен код подтверждения, введите его";
+const TEXT_RESEND_CODE_VERIFY = "Отправить еще раз";
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
@@ -58,5 +62,7 @@ const DISTANCE_CONTAINS_ROUTE = 0.1;
 const DISTANCE_CONTAINS_ROUTE_EXTREME = 0.15;
 
 // Errors
-const ERROR_INVALID_ERROR = "Неверная почта";
+const ERROR_INVALID_EMAIL = "Неверная почта";
+const ERROR_SEND_CODE_EMAIL = "Ошибка при отправке кода подтверждения на почту";
+const ERROR_CHECK_CODE_VERIFY = "Ошибка при проверке кода подтверждения";
 const ERROR_DRAW_ROUTE = "Ошибка построения маршрута";

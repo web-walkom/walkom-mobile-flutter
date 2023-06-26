@@ -72,34 +72,36 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(45.0)),
                     ),
-                    child: Column(children: [
-                      SelectableText(
-                        widget.excursion.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 22,
-                          color: Colors.black,
+                    child: Column(
+                      children: [
+                        SelectableText(
+                          widget.excursion.title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      Expanded(
-                        child: (state is ExcursionLoaded)
-                            ? SelectableText(
-                                state.excursion.description,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              )
-                            : (state is ExcursionError)
-                                ? ErrorLoad(tryAgain: () {
-                                    _excursionBloc.add(LoadExcursion(
-                                        excursionId: widget.excursion.id));
-                                  })
-                                : const Loader(),
-                      )
-                    ]),
+                        const SizedBox(height: 15),
+                        Expanded(
+                          child: (state is ExcursionLoaded)
+                              ? SelectableText(
+                                  state.excursion.description,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              : (state is ExcursionError)
+                                  ? ErrorLoad(tryAgain: () {
+                                      _excursionBloc.add(LoadExcursion(
+                                          excursionId: widget.excursion.id));
+                                    })
+                                  : const Loader(),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Positioned(

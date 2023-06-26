@@ -9,14 +9,16 @@ class MainButton extends StatelessWidget {
   });
 
   final String title;
-  final Function onClick;
+  final Function? onClick;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        onClick();
-      },
+      onPressed: onClick != null
+          ? () {
+              onClick!();
+            }
+          : null,
       style: buttonPrimary,
       child: Text(title),
     );

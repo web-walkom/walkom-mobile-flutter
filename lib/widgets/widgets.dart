@@ -1,5 +1,6 @@
 export 'main_screen.dart';
 export 'error_load.dart';
+export 'error_card.dart';
 export 'loader.dart';
 export 'toolbar.dart';
 export 'action_menu/action_menu.dart';
