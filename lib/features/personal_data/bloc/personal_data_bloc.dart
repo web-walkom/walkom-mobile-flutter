@@ -17,7 +17,7 @@ class PersonalDataBloc extends Bloc<PersonalDataEvent, PersonalDataState> {
           emit(PersonalDataUpdating());
         }
 
-        final result = await authRepository.updateUser(event.id, event.photo, event.firstName, event.lastName);
+        final result = await authRepository.updateUser(event.user);
         emit(PersonalDataUpdated(result: result));
       } catch (e, st) {
         emit(PersonalDataError(error: e));

@@ -8,6 +8,7 @@ import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:walkom_mobile_flutter/app.dart';
+import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/repositories/auth/auth.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 import 'package:walkom_mobile_flutter/repositories/users/users.dart';
@@ -28,6 +29,24 @@ void main() async {
 
   await Hive.initFlutter();
 
+  Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(ExcursionAdapter());
+  Hive.registerAdapter(ExcursionDetailAdapter());
+
+  final userBox = await Hive.openBox<User>(HIVE_USER_BOX);
+  final excursionsBox = await Hive.openBox<Excursion>(HIVE_EXCURSIONS_BOX);
+
+  GetIt.I.registerLazySingleton<Box<User>>(
+    () => userBox,
+  );
+  GetIt.I.registerLazySingleton<Box<Excursion>>(
+    () => excursionsBox,
+  );
+
+  if (userBox.values.isNotEmpty) {
+    USER = userBox.values.first;
+  }
+
   final dio = Dio();
   dio.interceptors.add(
     TalkerDioLogger(
@@ -47,10 +66,10 @@ void main() async {
   );
 
   GetIt.I.registerLazySingleton<ExcursionsRepository>(
-    () => ExcursionsRepositoryImpl(dio: dio),
+    () => ExcursionsRepositoryImpl(dio: dio, excursionsBox: excursionsBox),
   );
   GetIt.I.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(dio: dio),
+    () => AuthRepositoryImpl(dio: dio, userBox: userBox),
   );
   GetIt.I.registerLazySingleton<UsersRepository>(
     () => UsersRepositoryImpl(dio: dio),

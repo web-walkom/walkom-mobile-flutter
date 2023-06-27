@@ -61,7 +61,7 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
       builder: (context, state) {
         if (state is CodeVerifyChecked && state.result.status) {
           AutoRouter.of(context)
-              .replaceAll([const ExcursionsListRoute(), const ProfileRoute()]);
+              .replaceAll([const ExcursionsListRoute()]);
         }
 
         return MainScreen(

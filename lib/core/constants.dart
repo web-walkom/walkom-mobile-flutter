@@ -1,7 +1,10 @@
+import 'package:walkom_mobile_flutter/repositories/users/models/models.dart';
+
 // System
 const APP_NAME = "walkom";
 const VERSION = "1.0.0+1";
 const DATE_BUILD = "27.06.2023";
+User? USER = null;
 
 // Keys
 const GOOGLE_API_KEY = "AIzaSyDUMWb2ozasrHT-e3TLhDzGG-KHPyztW2k";
@@ -41,6 +44,7 @@ const TEXT_THEME_SYSTEM = "Как в системе";
 const TEXT_FIRST_NAME = "Имя";
 const TEXT_LAST_NAME = "Фамилия";
 const TEXT_EMAIL = "Почта";
+const TEXT_WITHOUT_NAME = "Без имени";
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
@@ -80,3 +84,15 @@ const ERROR_SEND_CODE_EMAIL = "Ошибка при отправке кода п�
 const ERROR_CHECK_CODE_VERIFY = "Ошибка при проверке кода подтверждения";
 const ERROR_UPDATE_USER = "Ошибка при обновлении даных пользователя";
 const ERROR_DRAW_ROUTE = "Ошибка построения маршрута";
+
+// Hive boxes
+const HIVE_USER_BOX = "user_box";
+const HIVE_EXCURSIONS_BOX = "excursions_box";
+
+// Fields class
+const FIELD_EMAIL = "email";
+const FIELD_SECRET_CODE = "secret_code";
+const FIELD_PHOTO = "photo";
+const FIELD_FIRST_NAME = "first_name";
+const FIELD_LAST_NAME = "last_name";
+const FIELD_ACCESS_TOKEN = "access_token";

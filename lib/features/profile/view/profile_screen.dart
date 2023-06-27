@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/domain/models/action_menu_child.dart';
@@ -23,34 +24,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final actionMenuMain = [
-      ActionMenuChild(
-        title: TEXT_AUTH,
-        icon: Icons.login_rounded,
-        onClick: () {
-          AutoRouter.of(context).push(const AuthRoute());
-        },
-      ),
-      ActionMenuChild(
-        title: TEXT_PERSONAL_DATA,
-        icon: Icons.person_rounded,
-        onClick: () {
-          const user = User(
-            id: "6415a13f4c61bca5b4c39fd2", 
-            email: "user@gmail.com", 
-            photo: "http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg", 
-            first_name: "Vanya", 
-            last_name: "Ivanov",
-          );
-          AutoRouter.of(context).push(PersonalDataRoute(user: user));
-        },
-      ),
-      ActionMenuChild(
-        title: TEXT_FAVORITE,
-        icon: Icons.bookmark_rounded,
-        onClick: () {
-          AutoRouter.of(context).push(const FavoriteRoute());
-        },
-      ),
+      if (USER == null)
+        ActionMenuChild(
+          title: TEXT_AUTH,
+          icon: Icons.lock_rounded,
+          onClick: () {
+            AutoRouter.of(context).push(const AuthRoute());
+          },
+        ),
+      if (USER != null)
+        ActionMenuChild(
+          title: TEXT_PERSONAL_DATA,
+          icon: Icons.person_rounded,
+          onClick: () {
+            final user = User(
+              id: USER!.id, 
+              email: USER!.email, 
+              photo: USER!.photo, 
+              firstName: USER!.firstName, 
+              lastName: USER!.lastName,
+              accessToken: USER!.accessToken,
+            );
+            AutoRouter.of(context).push(PersonalDataRoute(user: user));
+          }
+        ),
+      if (USER != null)
+        ActionMenuChild(
+          title: TEXT_FAVORITE,
+          icon: Icons.bookmark_rounded,
+          onClick: () {
+            AutoRouter.of(context).push(const FavoriteRoute());
+          },
+        ),
       ActionMenuChild(
         title: TEXT_DECORATION,
         icon: Icons.wb_sunny_rounded,
@@ -93,23 +98,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
         },
       ),
-      ActionMenuChild(
-        title: TEXT_LOGOUT,
-        icon: Icons.logout_rounded,
-        onClick: () {},
-      ),
+      if (USER != null)
+        ActionMenuChild(
+          title: TEXT_LOGOUT,
+          icon: Icons.logout_rounded,
+          onClick: () {
+            USER = null;
+            GetIt.I<Box<User>>().clear();
+            AutoRouter.of(context).replaceAll([const ExcursionsListRoute()]);
+          },
+        ),
     ];
 
     return MainScreen(
       child: Column(
         children: [
           const Toolbar(title: TEXT_PROFILE),
-          const SizedBox(height: 20),
-          const UserCard(
-            name: "Vanya Ivanov",
-            email: "user@gmail.com",
-            photo: "http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg",
-          ),
+          if (USER != null)
+            const SizedBox(height: 20),
+          if (USER != null)
+            UserCard(
+              firstName: USER!.firstName != "" ? USER!.firstName : TEXT_WITHOUT_NAME,
+              lastName: USER!.lastName,
+              email: USER!.email,
+              photo: USER!.photo,
+            ),
           const SizedBox(height: 20),
           ActionMenu(
             listChild: actionMenuMain,

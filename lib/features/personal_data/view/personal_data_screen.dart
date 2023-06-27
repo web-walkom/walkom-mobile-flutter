@@ -44,8 +44,8 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
       setState(() {});
     });
 
-    _firstNameController.setText(widget.user.first_name);
-    _lastNameController.setText(widget.user.last_name);
+    _firstNameController.setText(widget.user.firstName);
+    _lastNameController.setText(widget.user.lastName);
     _emailController.setText(widget.user.email);
   }
 
@@ -120,14 +120,15 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                     onClick: validFirstName == true
                         ? () {
                             if (state is! PersonalDataUpdating) {
-                              _personalDataBloc.add(
-                                UpdateUser(
-                                  id: widget.user.id,
-                                  photo: "",
-                                  firstName: _firstNameController.text,
-                                  lastName: _lastNameController.text,
-                                ),
+                              final user = User(
+                                id: widget.user.id, 
+                                email: widget.user.email, 
+                                photo: widget.user.photo, 
+                                firstName: _firstNameController.text, 
+                                lastName: _lastNameController.text,
+                                accessToken: widget.user.accessToken,
                               );
+                              _personalDataBloc.add(UpdateUser(user: user));
                             }
                           }
                         : null,

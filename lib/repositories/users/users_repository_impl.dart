@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/repositories/users/users.dart';
 
 class UsersRepositoryImpl implements UsersRepository {
@@ -15,18 +16,16 @@ class UsersRepositoryImpl implements UsersRepository {
   }
 
   @override
-  Future<ResultUpdateUser> updateUser(String id, String photo, String firstName, String lastName) async {
+  Future<ResultUpdateUser> updateUser(User user) async {
     Map<String, dynamic> body = {
-      'photo': photo,
-      'first_name': firstName,
-      'last_name': lastName,
+      FIELD_PHOTO: user.photo,
+      FIELD_FIRST_NAME: user.firstName,
+      FIELD_LAST_NAME: user.lastName,
     };
 
-    final token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTA0Mjk4NTAsInN1YiI6IjY0MTVhMTNmNGM2MWJjYTViNGMzOWZkMiJ9.NAe-iV1BJE3OcdbKTt1y41SqndRFA1PE0Xen5c2nCsM";
-
-    dio.options.headers["Authorization"] = "Bearer $token";
+    dio.options.headers["Authorization"] = "Bearer ${user.accessToken}";
     final response = await dio.post(
-      'https://api.walkom.ru/api/user/$id/update',
+      'https://api.walkom.ru/api/user/${user.id}/update',
       data: body,
     );
     return ResultUpdateUser.fromJson(response.data as Map<String, dynamic>);

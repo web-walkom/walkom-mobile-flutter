@@ -4,12 +4,14 @@ import 'package:walkom_mobile_flutter/styles/color.dart';
 class UserCard extends StatelessWidget {
   const UserCard({
     super.key,
-    required this.name,
+    required this.firstName,
+    required this.lastName,
     required this.email,
     this.photo,
   });
 
-  final String name;
+  final String firstName;
+  final String lastName;
   final String email;
   final String? photo;
 
@@ -34,12 +36,24 @@ class UserCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: 17.5,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      firstName,
+                      style: const TextStyle(
+                        fontSize: 17.5,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(width: 4.0),
+                    Text(
+                      lastName,
+                      style: const TextStyle(
+                        fontSize: 17.5,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
                 Text(
                   email,
