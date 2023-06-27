@@ -13,8 +13,14 @@ class CodeVerifyChecking extends CodeVerifyState {
 }
 
 class CodeVerifyChecked extends CodeVerifyState {
+  CodeVerifyChecked({
+    required this.result,
+  });
+
+  final ResultCheckCode result;
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [result];
 }
 
 class CodeVerifyError extends CodeVerifyState {

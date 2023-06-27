@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    DecorationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DecorationScreen(),
+      );
+    },
     CodeVerifyRoute.name: (routeData) {
       final args = routeData.argsAs<CodeVerifyRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -25,10 +31,22 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    AuthRoute.name: (routeData) {
+    PersonalDataRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AuthScreen(),
+        child: const PersonalDataScreen(),
+      );
+    },
+    ExcursionsListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ExcursionsListScreen(),
+      );
+    },
+    ProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProfileScreen(),
       );
     },
     GoogleMapRoute.name: (routeData) {
@@ -43,48 +61,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OSMMapScreen(),
       );
     },
-    AboutAppRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AboutAppScreen(),
-      );
-    },
-    ProfileRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ProfileScreen(),
-      );
-    },
-    DecorationRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DecorationScreen(),
-      );
-    },
-    PersonalDataRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const PersonalDataScreen(),
-      );
-    },
-    FavoriteRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const FavoriteScreen(),
-      );
-    },
-    ExcursionsListRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ExcursionsListScreen(),
-      );
-    },
-    DataAndMemoryRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DataAndMemoryScreen(),
-      );
-    },
     ExcursionRoute.name: (routeData) {
       final args = routeData.argsAs<ExcursionRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -95,7 +71,45 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    AuthRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AuthScreen(),
+      );
+    },
+    FavoriteRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FavoriteScreen(),
+      );
+    },
+    DataAndMemoryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DataAndMemoryScreen(),
+      );
+    },
+    AboutAppRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AboutAppScreen(),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [DecorationScreen]
+class DecorationRoute extends PageRouteInfo<void> {
+  const DecorationRoute({List<PageRouteInfo>? children})
+      : super(
+          DecorationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DecorationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -137,15 +151,43 @@ class CodeVerifyRouteArgs {
 }
 
 /// generated route for
-/// [AuthScreen]
-class AuthRoute extends PageRouteInfo<void> {
-  const AuthRoute({List<PageRouteInfo>? children})
+/// [PersonalDataScreen]
+class PersonalDataRoute extends PageRouteInfo<void> {
+  const PersonalDataRoute({List<PageRouteInfo>? children})
       : super(
-          AuthRoute.name,
+          PersonalDataRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'AuthRoute';
+  static const String name = 'PersonalDataRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ExcursionsListScreen]
+class ExcursionsListRoute extends PageRouteInfo<void> {
+  const ExcursionsListRoute({List<PageRouteInfo>? children})
+      : super(
+          ExcursionsListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExcursionsListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -174,104 +216,6 @@ class OSMMapRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'OSMMapRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [AboutAppScreen]
-class AboutAppRoute extends PageRouteInfo<void> {
-  const AboutAppRoute({List<PageRouteInfo>? children})
-      : super(
-          AboutAppRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AboutAppRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [ProfileScreen]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute({List<PageRouteInfo>? children})
-      : super(
-          ProfileRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ProfileRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [DecorationScreen]
-class DecorationRoute extends PageRouteInfo<void> {
-  const DecorationRoute({List<PageRouteInfo>? children})
-      : super(
-          DecorationRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'DecorationRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [PersonalDataScreen]
-class PersonalDataRoute extends PageRouteInfo<void> {
-  const PersonalDataRoute({List<PageRouteInfo>? children})
-      : super(
-          PersonalDataRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'PersonalDataRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [FavoriteScreen]
-class FavoriteRoute extends PageRouteInfo<void> {
-  const FavoriteRoute({List<PageRouteInfo>? children})
-      : super(
-          FavoriteRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'FavoriteRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [ExcursionsListScreen]
-class ExcursionsListRoute extends PageRouteInfo<void> {
-  const ExcursionsListRoute({List<PageRouteInfo>? children})
-      : super(
-          ExcursionsListRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ExcursionsListRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [DataAndMemoryScreen]
-class DataAndMemoryRoute extends PageRouteInfo<void> {
-  const DataAndMemoryRoute({List<PageRouteInfo>? children})
-      : super(
-          DataAndMemoryRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'DataAndMemoryRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -312,4 +256,60 @@ class ExcursionRouteArgs {
   String toString() {
     return 'ExcursionRouteArgs{key: $key, excursion: $excursion}';
   }
+}
+
+/// generated route for
+/// [AuthScreen]
+class AuthRoute extends PageRouteInfo<void> {
+  const AuthRoute({List<PageRouteInfo>? children})
+      : super(
+          AuthRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FavoriteScreen]
+class FavoriteRoute extends PageRouteInfo<void> {
+  const FavoriteRoute({List<PageRouteInfo>? children})
+      : super(
+          FavoriteRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavoriteRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [DataAndMemoryScreen]
+class DataAndMemoryRoute extends PageRouteInfo<void> {
+  const DataAndMemoryRoute({List<PageRouteInfo>? children})
+      : super(
+          DataAndMemoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DataAndMemoryRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AboutAppScreen]
+class AboutAppRoute extends PageRouteInfo<void> {
+  const AboutAppRoute({List<PageRouteInfo>? children})
+      : super(
+          AboutAppRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AboutAppRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

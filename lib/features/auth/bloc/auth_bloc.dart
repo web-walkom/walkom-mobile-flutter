@@ -17,8 +17,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(AuthSenting());
         }
 
-        await authRepository.sendCodeEmail(event.email);
-        emit(AuthSented());
+        final result = await authRepository.sendCodeEmail(event.email);
+        emit(AuthSented(result: result));
       } catch (e, st) {
         emit(AuthError(error: e));
         GetIt.I<Talker>().handle(e, st);

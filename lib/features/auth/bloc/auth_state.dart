@@ -13,8 +13,14 @@ class AuthSenting extends AuthState {
 }
 
 class AuthSented extends AuthState {
+  AuthSented({
+    required this.result,
+  });
+
+  final ResultSendCode result;
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [result];
 }
 
 class AuthError extends AuthState {

@@ -59,7 +59,7 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
     return BlocBuilder<CodeVerifyBloc, CodeVerifyState>(
       bloc: _codeVerifyBloc,
       builder: (context, state) {
-        if (state is CodeVerifyChecked) {
+        if (state is CodeVerifyChecked && state.result.status) {
           AutoRouter.of(context)
               .replaceAll([const ExcursionsListRoute(), const ProfileRoute()]);
         }
@@ -143,9 +143,11 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
                     const SizedBox(height: 5),
                     Container(
                       padding: const EdgeInsets.only(top: 5),
-                      child: (state is AuthError)
-                          ? const ErrorCard(message: ERROR_CHECK_CODE_VERIFY)
-                          : null,
+                      child: (state is CodeVerifyChecked && !state.result.status)
+                          ? ErrorCard(message: state.result.error)
+                          : (state is CodeVerifyError) 
+                            ? const ErrorCard(message: ERROR_CHECK_CODE_VERIFY) 
+                            : null,
                     ),
                     const SizedBox(height: 10),
                     TextButton(

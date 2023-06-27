@@ -59,7 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
     return BlocBuilder<AuthBloc, AuthState>(
       bloc: _authBloc,
       builder: (context, state) {
-        if (state is AuthSented) {
+        if (state is AuthSented && state.result.status) {
           AutoRouter.of(context).push(
             CodeVerifyRoute(email: _emailController.text),
           );

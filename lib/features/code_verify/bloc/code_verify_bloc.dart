@@ -17,8 +17,8 @@ class CodeVerifyBloc extends Bloc<CodeVerifyEvent, CodeVerifyState> {
           emit(CodeVerifyChecking());
         }
 
-        await authRepository.checkSecretCode(event.email, event.code);
-        emit(CodeVerifyChecked());
+        final result = await authRepository.checkSecretCode(event.email, event.code);
+        emit(CodeVerifyChecked(result: result));
       } catch (e, st) {
         emit(CodeVerifyError(error: e));
         GetIt.I<Talker>().handle(e, st);
