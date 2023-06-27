@@ -73,4 +73,5 @@ const DISTANCE_CONTAINS_ROUTE_EXTREME = 0.15;
 const ERROR_INVALID_EMAIL = "Неверная почта";
 const ERROR_SEND_CODE_EMAIL = "Ошибка при отправке кода подтверждения на почту";
 const ERROR_CHECK_CODE_VERIFY = "Ошибка при проверке кода подтверждения";
+const ERROR_UPDATE_USER = "Ошибка при обновлении даных пользователя";
 const ERROR_DRAW_ROUTE = "Ошибка построения маршрута";
