@@ -10,7 +10,7 @@ class ExcursionsRepositoryImpl implements ExcursionsRepository {
 
   @override
   Future<List<Excursion>> getExcursions() async {
-    final response = await Dio().get('https://api.walkom.ru/api/excursions');
+    final response = await dio.get('https://api.walkom.ru/api/excursions');
     return (response.data as List<dynamic>)
         .map((e) => Excursion.fromJson(e))
         .toList();
@@ -19,7 +19,7 @@ class ExcursionsRepositoryImpl implements ExcursionsRepository {
   @override
   Future<ExcursionDetail> getExcursionById(String id) async {
     final response =
-        await Dio().get('https://api.walkom.ru/api/excursions/$id');
+        await dio.get('https://api.walkom.ru/api/excursions/$id');
     return ExcursionDetail.fromJson(response.data as Map<String, dynamic>);
   }
 }

@@ -10,7 +10,7 @@ class UsersRepositoryImpl implements UsersRepository {
 
   @override
   Future<User> getUserById(String id) async {
-    final response = await Dio().get('https://api.walkom.ru/api/user/$id');
+    final response = await dio.get('https://api.walkom.ru/api/user/$id');
     return User.fromJson(response.data as Map<String, dynamic>);
   }
 
@@ -25,7 +25,7 @@ class UsersRepositoryImpl implements UsersRepository {
     final token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTA0Mjk4NTAsInN1YiI6IjY0MTVhMTNmNGM2MWJjYTViNGMzOWZkMiJ9.NAe-iV1BJE3OcdbKTt1y41SqndRFA1PE0Xen5c2nCsM";
 
     dio.options.headers["Authorization"] = "Bearer $token";
-    final response = await Dio().post(
+    final response = await dio.post(
       'https://api.walkom.ru/api/user/$id/update',
       data: body,
     );

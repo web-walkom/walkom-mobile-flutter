@@ -6,20 +6,23 @@ class TextFieldBase extends StatelessWidget {
     super.key,
     required this.controller,
     required this.placeholder,
+    this.enabled = true,
   });
 
   final TextEditingController controller;
   final String placeholder;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       cursorColor: darkGray,
+      enabled: enabled,
       decoration: InputDecoration(
         hintText: placeholder,
-        hintStyle: TextStyle(
-          color: darkGray,
+        hintStyle: const TextStyle(
+          color: Colors.black,
           fontWeight: FontWeight.w400,
         ),
         border: OutlineInputBorder(

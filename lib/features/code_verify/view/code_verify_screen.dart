@@ -25,10 +25,10 @@ class CodeVerifyScreen extends StatefulWidget {
 }
 
 class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
-  final _codeVerifyBloc = CodeVerifyBloc(
+  final _authBloc = AuthBloc(
     GetIt.I<AuthRepository>(),
   );
-  final _authBloc = AuthBloc(
+  final _codeVerifyBloc = CodeVerifyBloc(
     GetIt.I<AuthRepository>(),
   );
 
@@ -172,7 +172,7 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   MainButton(
-                    title: BUTTON_CONTINUE,
+                    title: BUTTON_VERIFY,
                     isLoading: state is CodeVerifyChecking,
                     onClick: codeValid
                         ? () {

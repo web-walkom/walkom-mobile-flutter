@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/domain/models/action_menu_child.dart';
 import 'package:walkom_mobile_flutter/features/profile/widgets/widgets.dart';
@@ -77,6 +79,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: TEXT_PRIVACY_POLICY,
         icon: Icons.verified_user_rounded,
         onClick: () {},
+      ),
+      ActionMenuChild(
+        title: TEXT_LOG,
+        icon: Icons.notes_rounded,
+        onClick: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => TalkerScreen(
+                talker: GetIt.I<Talker>(),
+              ),
+            ),
+          );
+        },
       ),
       ActionMenuChild(
         title: TEXT_LOGOUT,

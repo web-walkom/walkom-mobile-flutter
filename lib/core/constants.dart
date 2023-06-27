@@ -1,7 +1,7 @@
 // System
 const APP_NAME = "walkom";
 const VERSION = "1.0.0+1";
-const DATE_BUILD = "05.06.2023";
+const DATE_BUILD = "27.06.2023";
 
 // Keys
 const GOOGLE_API_KEY = "AIzaSyDUMWb2ozasrHT-e3TLhDzGG-KHPyztW2k";
@@ -20,6 +20,7 @@ const TEXT_SETTINGS = "Настройки";
 const TEXT_DECORATION = "Оформление";
 const TEXT_ABOUT_APP = "О приложении";
 const TEXT_PRIVACY_POLICY = "Политика конфиденциальности";
+const TEXT_LOG = "Логи";
 const TEXT_LOGOUT = "Выйти";
 const TEXT_TOUR_ROUTE = "Маршрут экскурсии";
 const TEXT_ENTER_CODE = "Введите код";
@@ -37,11 +38,15 @@ const TEXT_THEME_APP = "Тема приложения";
 const TEXT_THEME_LIGHT = "Светлая";
 const TEXT_THEME_NIGHT = "Темная";
 const TEXT_THEME_SYSTEM = "Как в системе";
+const TEXT_FIRST_NAME = "Имя";
+const TEXT_LAST_NAME = "Фамилия";
+const TEXT_EMAIL = "Почта";
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
 const BUTTON_RUN_EXCURSION = "Запустить";
 const BUTTON_CONTINUE = "Продолжить";
+const BUTTON_VERIFY = "Подтвердить";
 const BUTTON_SAVE = "Сохранить";
 const BUTTON_START_EXCURSION = "Начать экскурсию";
 const BUTTON_SHOW_AR = "Смотреть в AR";

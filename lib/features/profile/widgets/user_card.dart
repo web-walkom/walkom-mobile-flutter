@@ -26,15 +26,10 @@ class UserCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            (photo != null)
-                ? CircleAvatar(
-                    backgroundImage: NetworkImage(photo!),
-                    backgroundColor: lightSilver,
-                  )
-                : CircleAvatar(
-                    backgroundColor: lightSilver,
-                    radius: 21,
-                  ),
+            CircleAvatar(
+              backgroundImage: NetworkImage(photo!),
+              backgroundColor: lightSilver,
+            ),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

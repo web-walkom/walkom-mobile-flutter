@@ -29,6 +29,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
 
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
   bool validFirstName = false;
 
   @override
@@ -45,6 +46,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
 
     _firstNameController.setText(widget.user.first_name);
     _lastNameController.setText(widget.user.last_name);
+    _emailController.setText(widget.user.email);
   }
 
   @override
@@ -68,32 +70,38 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Toolbar(title: TEXT_PERSONAL_DATA),
                   const SizedBox(height: 20),
-                  Card(
-                    elevation: 0,
-                    color: background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(30.0),
-                      child: Icon(
-                        Icons.person_rounded,
-                        size: 35.0,
-                      ),
+                  Center(
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(widget.user.photo),
+                      backgroundColor: lightSilver,
+                      radius: 50,
                     ),
                   ),
                   const SizedBox(height: 20),
+                  const Subtitle(text: TEXT_FIRST_NAME),
+                  const SizedBox(height: 7),
                   TextFieldBase(
                     controller: _firstNameController,
                     placeholder: PLACEHOLDER_ENTER_FIRST_NAME,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
+                  const Subtitle(text: TEXT_LAST_NAME),
+                  const SizedBox(height: 7),
                   TextFieldBase(
                     controller: _lastNameController,
                     placeholder: PLACEHOLDER_ENTER_LAST_NAME,
+                  ),
+                  const SizedBox(height: 15),
+                  const Subtitle(text: TEXT_EMAIL),
+                  const SizedBox(height: 7),
+                  TextFieldBase(
+                    controller: _emailController,
+                    placeholder: PLACEHOLDER_ENTER_EMAIL,
+                    enabled: false,
                   ),
                   Container(
                       padding: const EdgeInsets.only(top: 5),

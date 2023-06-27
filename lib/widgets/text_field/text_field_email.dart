@@ -20,8 +20,8 @@ class TextFieldEmail extends StatelessWidget {
       cursorColor: darkGray,
       decoration: InputDecoration(
         hintText: placeholder,
-        hintStyle: TextStyle(
-          color: darkGray,
+        hintStyle: const TextStyle(
+          color: Colors.black,
           fontWeight: FontWeight.w400,
         ),
         border: OutlineInputBorder(

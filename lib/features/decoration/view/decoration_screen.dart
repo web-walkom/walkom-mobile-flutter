@@ -27,14 +27,7 @@ class _DecorationScreenState extends State<DecorationScreen> {
         children: [
           const Toolbar(title: TEXT_DECORATION),
           const SizedBox(height: 25),
-          Text(
-            TEXT_THEME_APP,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: darkGray,
-            ),
-          ),
+          const Subtitle(text: TEXT_THEME_APP),
           const SizedBox(height: 10),
           ListTile(
             contentPadding: const EdgeInsets.all(0),

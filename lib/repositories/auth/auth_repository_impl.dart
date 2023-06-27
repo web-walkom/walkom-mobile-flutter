@@ -14,7 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
       'email': email,
     };
 
-    final response = await Dio().post(
+    final response = await dio.post(
       'https://api.walkom.ru/api/auth/send-code',
       data: body,
     );
@@ -28,7 +28,7 @@ class AuthRepositoryImpl implements AuthRepository {
       'secret_code': code,
     };
 
-    final response = await Dio().post(
+    final response = await dio.post(
       'https://api.walkom.ru/api/auth/check-code',
       data: body,
     );
