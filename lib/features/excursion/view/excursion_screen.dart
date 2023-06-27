@@ -112,7 +112,8 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                     title: BUTTON_RUN_EXCURSION,
                     onClick: () {
                       // AutoRouter.of(context).push(const OSMMapRoute());
-                      AutoRouter.of(context).push(const GoogleMapRoute());
+                      // AutoRouter.of(context).push(const GoogleMapRoute());
+                      AutoRouter.of(context).push(const FlutterMapRoute());
                     },
                   ),
                 ),

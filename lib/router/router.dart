@@ -25,6 +25,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: ProfileRoute.page, path: '/profile'),
         AutoRoute(page: OSMMapRoute.page),
         AutoRoute(page: GoogleMapRoute.page),
+        AutoRoute(page: FlutterMapRoute.page),
         AutoRoute(page: PersonalDataRoute.page),
         AutoRoute(page: FavoriteRoute.page),
         AutoRoute(page: DecorationRoute.page),

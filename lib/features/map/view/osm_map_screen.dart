@@ -13,11 +13,8 @@ class OSMMapScreen extends StatefulWidget {
 }
 
 class _OSMMapScreenState extends State<OSMMapScreen> {
-  final _mapController = MapController.withUserPosition(
-    trackUserLocation: const UserTrackingOption(
-      enableTracking: true,
-      unFollowUser: false,
-    ),
+  final _mapController = MapController.withPosition(
+    initPosition: GeoPoint(latitude: 58.010352, longitude: 56.237184),
   );
 
   var placemarks = <String, String>{};
@@ -63,12 +60,12 @@ class _OSMMapScreenState extends State<OSMMapScreen> {
         builder: (context, snapshot) {
           return OSMFlutter(
             controller: _mapController,
-            // mapIsLoading: const Loader(),
-            initZoom: 12,
-            // minZoomLevel: 4,
+            initZoom: 16,
+            minZoomLevel: 4,
             maxZoomLevel: 19,
             stepZoom: 1.0,
             androidHotReloadSupport: true,
+            enableRotationByGesture: true,
             userLocationMarker: UserLocationMaker(
               personMarker: const MarkerIcon(
                 icon: Icon(
@@ -90,18 +87,17 @@ class _OSMMapScreenState extends State<OSMMapScreen> {
               defaultMarker: const MarkerIcon(
                 icon: Icon(
                   Icons.person_pin_circle,
-                  color: Colors.black,
+                  color: Colors.red,
                   size: 48,
                 ),
               ),
             ),
             onMapIsReady: (isReady) async => {
-              if (isReady)
-                {
-                  await Future.delayed(const Duration(seconds: 1), () async {
-                    await _mapController.currentLocation();
-                  })
-                }
+              if (isReady) {
+                await Future.delayed(const Duration(seconds: 1), () async {
+                  await _mapController.currentLocation();
+                })
+              }
             },
             onGeoPointClicked: (geoPoint) {
               showModalBottomSheet(

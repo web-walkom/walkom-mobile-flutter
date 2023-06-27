@@ -65,6 +65,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OSMMapScreen(),
       );
     },
+    FlutterMapRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FlutterMapScreen(),
+      );
+    },
     ExcursionRoute.name: (routeData) {
       final args = routeData.argsAs<ExcursionRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -244,6 +250,20 @@ class OSMMapRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'OSMMapRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FlutterMapScreen]
+class FlutterMapRoute extends PageRouteInfo<void> {
+  const FlutterMapRoute({List<PageRouteInfo>? children})
+      : super(
+          FlutterMapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FlutterMapRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
