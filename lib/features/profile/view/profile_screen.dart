@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/domain/models/action_menu_child.dart';
 import 'package:walkom_mobile_flutter/features/profile/widgets/widgets.dart';
+import 'package:walkom_mobile_flutter/repositories/users/users.dart';
 import 'package:walkom_mobile_flutter/router/router.dart';
 import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
@@ -31,7 +32,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: TEXT_PERSONAL_DATA,
         icon: Icons.person_rounded,
         onClick: () {
-          AutoRouter.of(context).push(const PersonalDataRoute());
+          const user = User(
+            id: "6415a13f4c61bca5b4c39fd2", 
+            email: "user@gmail.com", 
+            photo: "http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg", 
+            first_name: "Vanya", 
+            last_name: "Ivanov",
+          );
+          AutoRouter.of(context).push(PersonalDataRoute(user: user));
         },
       ),
       ActionMenuChild(

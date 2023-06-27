@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pinput/pinput.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/features/personal_data/bloc/personal_data_bloc.dart';
 import 'package:walkom_mobile_flutter/repositories/users/users.dart';
@@ -12,7 +13,10 @@ import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 class PersonalDataScreen extends StatefulWidget {
   const PersonalDataScreen({
     super.key,
+    required this.user,
   });
+
+  final User user;
 
   @override
   State<PersonalDataScreen> createState() => _PersonalDataScreenState();
@@ -38,6 +42,9 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
       }
       setState(() {});
     });
+
+    _firstNameController.setText(widget.user.first_name);
+    _lastNameController.setText(widget.user.last_name);
   }
 
   @override
@@ -107,7 +114,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                             if (state is! PersonalDataUpdating) {
                               _personalDataBloc.add(
                                 UpdateUser(
-                                  id: "6415a13f4c61bca5b4c39fd2",
+                                  id: widget.user.id,
                                   photo: "",
                                   firstName: _firstNameController.text,
                                   lastName: _lastNameController.text,

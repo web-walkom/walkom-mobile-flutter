@@ -12,6 +12,7 @@ import 'package:walkom_mobile_flutter/features/map/map.dart';
 import 'package:walkom_mobile_flutter/features/personal_data/personal_data.dart';
 import 'package:walkom_mobile_flutter/features/profile/profile.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/models/models.dart';
+import 'package:walkom_mobile_flutter/repositories/users/models/models.dart';
 
 part 'router.gr.dart';
 

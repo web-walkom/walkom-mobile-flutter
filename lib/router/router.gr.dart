@@ -32,9 +32,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     PersonalDataRoute.name: (routeData) {
+      final args = routeData.argsAs<PersonalDataRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const PersonalDataScreen(),
+        child: PersonalDataScreen(
+          key: args.key,
+          user: args.user,
+        ),
       );
     },
     ExcursionsListRoute.name: (routeData) {
@@ -152,16 +156,40 @@ class CodeVerifyRouteArgs {
 
 /// generated route for
 /// [PersonalDataScreen]
-class PersonalDataRoute extends PageRouteInfo<void> {
-  const PersonalDataRoute({List<PageRouteInfo>? children})
-      : super(
+class PersonalDataRoute extends PageRouteInfo<PersonalDataRouteArgs> {
+  PersonalDataRoute({
+    Key? key,
+    required User user,
+    List<PageRouteInfo>? children,
+  }) : super(
           PersonalDataRoute.name,
+          args: PersonalDataRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'PersonalDataRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<PersonalDataRouteArgs> page =
+      PageInfo<PersonalDataRouteArgs>(name);
+}
+
+class PersonalDataRouteArgs {
+  const PersonalDataRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final User user;
+
+  @override
+  String toString() {
+    return 'PersonalDataRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for
