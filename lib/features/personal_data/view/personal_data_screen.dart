@@ -111,31 +111,30 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                     )
                 ],
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  MainButton(
-                    title: BUTTON_SAVE,
-                    isLoading: state is PersonalDataUpdating,
-                    onClick: validFirstName == true
-                        ? () {
-                            if (state is! PersonalDataUpdating) {
-                              final user = User(
-                                id: widget.user.id, 
-                                email: widget.user.email, 
-                                photo: widget.user.photo, 
-                                firstName: _firstNameController.text, 
-                                lastName: _lastNameController.text,
-                                accessToken: widget.user.accessToken,
-                              );
-                              _personalDataBloc.add(UpdateUser(user: user));
-                            }
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 20,
+                child: MainButton(
+                  title: BUTTON_SAVE,
+                  isLoading: state is PersonalDataUpdating,
+                  onClick: validFirstName == true
+                      ? () {
+                          if (state is! PersonalDataUpdating) {
+                            final user = User(
+                              id: widget.user.id, 
+                              email: widget.user.email, 
+                              photo: widget.user.photo, 
+                              firstName: _firstNameController.text, 
+                              lastName: _lastNameController.text,
+                              accessToken: widget.user.accessToken,
+                            );
+                            _personalDataBloc.add(UpdateUser(user: user));
                           }
-                        : null,
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              )
+                        }
+                      : null,
+                ),
+              ),
             ],
           ),
         );

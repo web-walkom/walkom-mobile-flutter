@@ -134,24 +134,23 @@ class _AuthScreenState extends State<AuthScreen> {
                   ],
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  MainButton(
-                    title: BUTTON_CONTINUE,
-                    isLoading: state is AuthSenting,
-                    onClick: validEmail == true
-                        ? () {
-                            if (state is! AuthSenting) {
-                              _authBloc.add(
-                                  AuthByEmail(email: _emailController.text));
-                            }
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 20,
+                child: MainButton(
+                  title: BUTTON_CONTINUE,
+                  isLoading: state is AuthSenting,
+                  onClick: validEmail == true
+                      ? () {
+                          if (state is! AuthSenting) {
+                            _authBloc.add(
+                                AuthByEmail(email: _emailController.text));
                           }
-                        : null,
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              )
+                        }
+                      : null,
+                ),
+              ),
             ],
           ),
         );

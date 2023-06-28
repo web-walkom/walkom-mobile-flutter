@@ -168,26 +168,25 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
                   ],
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  MainButton(
-                    title: BUTTON_VERIFY,
-                    isLoading: state is CodeVerifyChecking,
-                    onClick: codeValid
-                        ? () {
-                            if (state is! CodeVerifyChecking) {
-                              _codeVerifyBloc.add(CheckSecretCode(
-                                email: widget.email,
-                                code: int.parse(_codeController.text),
-                              ));
-                            }
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 20,
+                child: MainButton(
+                  title: BUTTON_VERIFY,
+                  isLoading: state is CodeVerifyChecking,
+                  onClick: codeValid
+                      ? () {
+                          if (state is! CodeVerifyChecking) {
+                            _codeVerifyBloc.add(CheckSecretCode(
+                              email: widget.email,
+                              code: int.parse(_codeController.text),
+                            ));
                           }
-                        : null,
-                  ),
-                  const SizedBox(height: 20)
-                ],
-              )
+                        }
+                      : null,
+                ),
+              ),
             ],
           ),
         );

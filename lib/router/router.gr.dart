@@ -53,12 +53,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
-    GoogleMapRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const GoogleMapScreen(),
-      );
-    },
     OSMMapRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -66,9 +60,25 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     FlutterMapRoute.name: (routeData) {
+      final args = routeData.argsAs<FlutterMapRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const FlutterMapScreen(),
+        child: FlutterMapScreen(
+          key: args.key,
+          placemarks: args.placemarks,
+          waypoints: args.waypoints,
+        ),
+      );
+    },
+    MapboxMapRoute.name: (routeData) {
+      final args = routeData.argsAs<MapboxMapRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MapboxMapScreen(
+          key: args.key,
+          placemarks: args.placemarks,
+          waypoints: args.waypoints,
+        ),
       );
     },
     ExcursionRoute.name: (routeData) {
@@ -227,20 +237,6 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [GoogleMapScreen]
-class GoogleMapRoute extends PageRouteInfo<void> {
-  const GoogleMapRoute({List<PageRouteInfo>? children})
-      : super(
-          GoogleMapRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'GoogleMapRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [OSMMapScreen]
 class OSMMapRoute extends PageRouteInfo<void> {
   const OSMMapRoute({List<PageRouteInfo>? children})
@@ -256,16 +252,88 @@ class OSMMapRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [FlutterMapScreen]
-class FlutterMapRoute extends PageRouteInfo<void> {
-  const FlutterMapRoute({List<PageRouteInfo>? children})
-      : super(
+class FlutterMapRoute extends PageRouteInfo<FlutterMapRouteArgs> {
+  FlutterMapRoute({
+    Key? key,
+    required List<Placemark> placemarks,
+    required List<Waypoint> waypoints,
+    List<PageRouteInfo>? children,
+  }) : super(
           FlutterMapRoute.name,
+          args: FlutterMapRouteArgs(
+            key: key,
+            placemarks: placemarks,
+            waypoints: waypoints,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'FlutterMapRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<FlutterMapRouteArgs> page =
+      PageInfo<FlutterMapRouteArgs>(name);
+}
+
+class FlutterMapRouteArgs {
+  const FlutterMapRouteArgs({
+    this.key,
+    required this.placemarks,
+    required this.waypoints,
+  });
+
+  final Key? key;
+
+  final List<Placemark> placemarks;
+
+  final List<Waypoint> waypoints;
+
+  @override
+  String toString() {
+    return 'FlutterMapRouteArgs{key: $key, placemarks: $placemarks, waypoints: $waypoints}';
+  }
+}
+
+/// generated route for
+/// [MapboxMapScreen]
+class MapboxMapRoute extends PageRouteInfo<MapboxMapRouteArgs> {
+  MapboxMapRoute({
+    Key? key,
+    required List<Placemark> placemarks,
+    required List<Waypoint> waypoints,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MapboxMapRoute.name,
+          args: MapboxMapRouteArgs(
+            key: key,
+            placemarks: placemarks,
+            waypoints: waypoints,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MapboxMapRoute';
+
+  static const PageInfo<MapboxMapRouteArgs> page =
+      PageInfo<MapboxMapRouteArgs>(name);
+}
+
+class MapboxMapRouteArgs {
+  const MapboxMapRouteArgs({
+    this.key,
+    required this.placemarks,
+    required this.waypoints,
+  });
+
+  final Key? key;
+
+  final List<Placemark> placemarks;
+
+  final List<Waypoint> waypoints;
+
+  @override
+  String toString() {
+    return 'MapboxMapRouteArgs{key: $key, placemarks: $placemarks, waypoints: $waypoints}';
+  }
 }
 
 /// generated route for

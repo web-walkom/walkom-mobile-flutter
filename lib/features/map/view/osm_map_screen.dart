@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:latlong2/latlong.dart';
 
 @RoutePage()
 class OSMMapScreen extends StatefulWidget {
@@ -13,6 +14,7 @@ class OSMMapScreen extends StatefulWidget {
 }
 
 class _OSMMapScreenState extends State<OSMMapScreen> {
+  final startPoint = GeoPoint(latitude: 58.010352, longitude: 56.237184);
   final _mapController = MapController.withPosition(
     initPosition: GeoPoint(latitude: 58.010352, longitude: 56.237184),
   );
@@ -53,6 +55,12 @@ class _OSMMapScreenState extends State<OSMMapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _mapController.addMarker(
+      startPoint, 
+      markerIcon: const MarkerIcon(icon: Icon(Icons.pin_drop_rounded)), 
+      angle:pi/3,
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: StreamBuilder(

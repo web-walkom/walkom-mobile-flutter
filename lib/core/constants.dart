@@ -49,10 +49,10 @@ const TEXT_WITHOUT_NAME = "Без имени";
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
 const BUTTON_RUN_EXCURSION = "Запустить";
+const BUTTON_START_EXCURSION = "Начать экскурсию";
 const BUTTON_CONTINUE = "Продолжить";
 const BUTTON_VERIFY = "Подтвердить";
 const BUTTON_SAVE = "Сохранить";
-const BUTTON_START_EXCURSION = "Начать экскурсию";
 const BUTTON_SHOW_AR = "Смотреть в AR";
 
 // Placeholders
