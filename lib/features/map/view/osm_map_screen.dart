@@ -1,49 +1,58 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:walkom_mobile_flutter/core/constants.dart';
+import 'package:walkom_mobile_flutter/repositories/excursions/models/models.dart';
+import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
 @RoutePage()
 class OSMMapScreen extends StatefulWidget {
   const OSMMapScreen({
     super.key,
+    required this.placemarks,
+    required this.waypoints,
   });
+
+  final List<Placemark> placemarks;
+  final List<Waypoint> waypoints;
 
   @override
   State<OSMMapScreen> createState() => _OSMMapScreenState();
 }
 
 class _OSMMapScreenState extends State<OSMMapScreen> {
-  final startPoint = GeoPoint(latitude: 58.010352, longitude: 56.237184);
+  final startPoint = GeoPoint(
+    latitude: 57.814614,
+    longitude: 56.462332,
+  );
   final _mapController = MapController.withPosition(
-    initPosition: GeoPoint(latitude: 58.010352, longitude: 56.237184),
+    initPosition: GeoPoint(latitude: 57.814614, longitude: 56.462332),
   );
 
-  var placemarks = <String, String>{};
+  final List<GeoPoint> placemarksPoints = [];
+  final List<GeoPoint> polylinesPoints = [];
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _mapController.listenerMapSingleTapping.addListener(() async {
-        var position = _mapController.listenerMapSingleTapping.value;
+      for (var waypoint in widget.waypoints) {
+        polylinesPoints.add(
+          GeoPoint(
+            latitude: waypoint.latitude,
+            longitude: waypoint.longitude,
+          ),
+        );
+      }
 
-        if (position != null) {
-          await _mapController.addMarker(
-            position,
-            markerIcon: const MarkerIcon(
-              icon: Icon(
-                Icons.pin_drop,
-                color: Colors.black,
-                size: 48,
-              ),
-            ),
-          );
-
-          var key = '${position.latitude}_${position.longitude}';
-          placemarks[key] = placemarks.length.toString();
-        }
-      });
+      for (var placemark in widget.placemarks) {
+        placemarksPoints.add(
+          GeoPoint(
+            latitude: placemark.latitude,
+            longitude: placemark.longitude,
+          ),
+        );
+      }
     });
   }
 
@@ -53,71 +62,179 @@ class _OSMMapScreenState extends State<OSMMapScreen> {
     super.dispose();
   }
 
+  void _onMapCreated(bool isReady) async {
+    if (isReady) {
+      await Future.delayed(const Duration(seconds: 1), () async {
+        await _mapController.currentLocation();
+      });
+
+      _addRoute();
+      _addPlacemark();
+    }
+  }
+
+  void _addRoute() async {
+    _mapController.drawRoadManually(
+      polylinesPoints,
+      const RoadOption(
+        roadWidth: 10,
+        roadColor: Colors.blue,
+        zoomInto: true,
+      ),
+    );
+  }
+
+  void _addPlacemark() {
+    for (var placemark in placemarksPoints) {
+      _mapController.addMarker(
+        placemark,
+        markerIcon: const MarkerIcon(
+          icon: Icon(
+            Icons.location_on,
+            color: Colors.red,
+            size: 48,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    _mapController.addMarker(
-      startPoint, 
-      markerIcon: const MarkerIcon(icon: Icon(Icons.pin_drop_rounded)), 
-      angle:pi/3,
-    );
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: StreamBuilder(
         stream: null,
         builder: (context, snapshot) {
-          return OSMFlutter(
-            controller: _mapController,
-            initZoom: 16,
-            minZoomLevel: 4,
-            maxZoomLevel: 19,
-            stepZoom: 1.0,
-            androidHotReloadSupport: true,
-            enableRotationByGesture: true,
-            userLocationMarker: UserLocationMaker(
-              personMarker: const MarkerIcon(
-                icon: Icon(
-                  Icons.personal_injury,
-                  color: Colors.black,
-                  size: 48,
+          return Stack(
+            children: [
+              OSMFlutter(
+                controller: _mapController,
+                initZoom: 16,
+                minZoomLevel: 14,
+                maxZoomLevel: 19,
+                stepZoom: 1.0,
+                androidHotReloadSupport: true,
+                enableRotationByGesture: true,
+                userLocationMarker: UserLocationMaker(
+                  personMarker: const MarkerIcon(
+                    icon: Icon(
+                      Icons.near_me_rounded,
+                      color: Colors.blue,
+                      size: 48,
+                    ),
+                  ),
+                  directionArrowMarker: const MarkerIcon(
+                    icon: Icon(
+                      Icons.near_me,
+                      color: Colors.blue,
+                      size: 48,
+                    ),
+                  ),
                 ),
-              ),
-              directionArrowMarker: const MarkerIcon(
-                icon: Icon(
-                  Icons.location_on,
-                  color: Colors.black,
-                  size: 48,
+                roadConfiguration: const RoadOption(roadColor: Colors.blue),
+                markerOption: MarkerOption(
+                  defaultMarker: const MarkerIcon(
+                    icon: Icon(
+                      Icons.location_on,
+                      color: Colors.red,
+                      size: 48,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            roadConfiguration: const RoadOption(roadColor: Colors.blue),
-            markerOption: MarkerOption(
-              defaultMarker: const MarkerIcon(
-                icon: Icon(
-                  Icons.person_pin_circle,
-                  color: Colors.red,
-                  size: 48,
-                ),
-              ),
-            ),
-            onMapIsReady: (isReady) async => {
-              if (isReady) {
-                await Future.delayed(const Duration(seconds: 1), () async {
-                  await _mapController.currentLocation();
-                })
-              }
-            },
-            onGeoPointClicked: (geoPoint) {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return Container();
+                onMapIsReady: (isReady) async => _onMapCreated(isReady),
+                onGeoPointClicked: (geoPoint) {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Container();
+                    },
+                  );
                 },
-              );
-            },
+              ),
+              Positioned(
+                top: 50,
+                left: 25,
+                right: 25,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleButton(
+                        icon: Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                        elevation: 3,
+                        width: 50,
+                        height: 50,
+                        onClick: () {
+                          AutoRouter.of(context).pop();
+                        },
+                      ),
+                      CircleButton(
+                        icon: Icons.notes_rounded,
+                        color: Colors.white,
+                        elevation: 3,
+                        width: 50,
+                        height: 50,
+                        onClick: () {
+                          listRouteExcursion(context);
+                        },
+                      ),
+                    ]),
+              ),
+              Positioned(
+                bottom: 100,
+                right: 25,
+                child: CircleButton(
+                  icon: Icons.near_me_rounded,
+                  color: Colors.white,
+                  elevation: 3,
+                  width: 50,
+                  height: 50,
+                  iconSize: 25,
+                  onClick: () {},
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                left: 25,
+                right: 25,
+                child: MainButton(
+                  title: BUTTON_START_EXCURSION,
+                  onClick: () {},
+                ),
+              ),
+            ],
           );
         },
       ),
+    );
+  }
+
+  listRouteExcursion(context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext c) {
+        return const ModalBottomSheet(
+          child: Column(
+            children: [
+              SizedBox(height: 10),
+              ModalBottomSheetItem(
+                title: TEXT_ADD_FAVORITE,
+                icon: Icons.bookmark_rounded,
+              ),
+              ModalBottomSheetItem(
+                title: TEXT_REPORT_ERROR,
+                icon: Icons.report_rounded,
+              ),
+              ModalBottomSheetItem(
+                title: TEXT_DELETE_FILES,
+                icon: Icons.delete_rounded,
+              ),
+              SizedBox(height: 10)
+            ],
+          ),
+        );
+      },
     );
   }
 }

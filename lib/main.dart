@@ -50,7 +50,7 @@ void main() async {
   final dio = Dio();
   dio.interceptors.add(
     TalkerDioLogger(
-      talker: talker, 
+      talker: talker,
       settings: const TalkerDioLoggerSettings(
         printResponseData: false,
       ),
