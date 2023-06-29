@@ -40,39 +40,37 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
     super.initState();
   }
 
-  Future<LocationData?> _getLocation() async {
-    GetIt.I<Talker>().info("_getLocation");
-    final location = await getLocation();
-    return location;
-  }
-
   // Future<LocationData?> _getLocation() async {
-  //   Location location = new Location();
-  //   LocationData _locationData;
-
-  //   bool _serviceEnabled;
-  //   PermissionStatus _permissionGranted;
-
-  //   _serviceEnabled = await location.serviceEnabled();
-  //   if (!_serviceEnabled) {
-  //     _serviceEnabled = await location.requestService();
-  //     if (!_serviceEnabled) {
-  //       return null;
-  //     }
-  //   }
-
-  //   _permissionGranted = await location.hasPermission();
-  //   if (_permissionGranted == PermissionStatus.denied) {
-  //     _permissionGranted = await location.requestPermission();
-  //     if (_permissionGranted != PermissionStatus.granted) {
-  //       return null;
-  //     }
-  //   }
-
-  //   _locationData = await location.getLocation();
-
-  //   return _locationData;
+  //   final location = await getLocation();
+  //   return location;
   // }
+
+  Future<LocationData?> _getLocation() async {
+    // Location _location = Location();
+    // LocationData _locationData;
+    //
+    // bool _serviceEnabled;
+    // PermissionStatus _permissionGranted;
+    //
+    // _serviceEnabled = await _location.serviceEnabled();
+    // if (!_serviceEnabled) {
+    //   _serviceEnabled = await _location.requestService();
+    //   if (!_serviceEnabled) {
+    //     return null;
+    //   }
+    // }
+    //
+    // _permissionGranted = await _location.hasPermission();
+    // if (_permissionGranted == PermissionStatus.denied) {
+    //   _permissionGranted = await _location.requestPermission();
+    //   if (_permissionGranted != PermissionStatus.granted) {
+    //     return null;
+    //   }
+    // }
+    //
+    // _locationData = await _location.getLocation();
+    // return _locationData;
+  }
 
   // _getCurrentLocation() {
   //   print("_getCurrentLocation");
@@ -91,13 +89,13 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
   // Future<Position> _determinePosition() async {
   //   bool serviceEnabled;
   //   LocationPermission permission;
-
+  //
   //   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   //   if (!serviceEnabled) {
   //     return Future.error('Location services are disabled.');
   //   }
   //   GetIt.I<Talker>().info(serviceEnabled);
-
+  //
   //   permission = await Geolocator.checkPermission();
   //   if (permission == LocationPermission.denied) {
   //     permission = await Geolocator.requestPermission();
@@ -106,12 +104,12 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
   //     }
   //   }
   //   GetIt.I<Talker>().info(permission);
-    
+  //
   //   if (permission == LocationPermission.deniedForever) {
   //     return Future.error(
   //       'Location permissions are permanently denied, we cannot request permissions.');
   //   }
-
+  //
   //   return await Geolocator.getCurrentPosition();
   // }
 
@@ -197,6 +195,13 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                       //   ),
                       // if (_currentPosition == null)
                       //   const Text("Location: null"),
+                        
+                      if (currentLocation != null)
+                        Text(
+                          "Location: ${currentLocation?.latitude}, ${currentLocation?.longitude}",
+                        ),
+                      if (currentLocation == null)
+                        const Text("Location: null"),
                       
                       MainButton(
                         title: BUTTON_RUN_EXCURSION,
@@ -205,14 +210,14 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                           if (state is ExcursionLoaded) {
                             // AutoRouter.of(context).push(
                             //   FlutterMapRoute(
-                            //     placemarks: state.excursion.placemarks, 
+                            //     placemarks: state.excursion.placemarks,
                             //     waypoints: state.excursion.waypoints,
                             //   ),
                             // );
 
                             AutoRouter.of(context).push(
                               MapboxMapRoute(
-                                placemarks: state.excursion.placemarks, 
+                                placemarks: state.excursion.placemarks,
                                 waypoints: state.excursion.waypoints,
                               ),
                             );

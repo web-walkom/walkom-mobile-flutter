@@ -33,8 +33,8 @@ class _MapboxMapScreenState extends State<MapboxMapScreen> {
   final List<LatLng> polylinesPoints = [];
 
   final apiKeyMapbox = "sk.eyJ1IjoiYjBzaGthIiwiYSI6ImNsamc1N3hkZDAyM3UzZXFpZ3hiMzM2eGcifQ.3Ed8QctY-Hkmtucs5ctoxw";
-  final styleUrl = 'mapbox://styles/b0shka/cljeopzw3006501paf66za793';
-  // final styleUrl = 'mapbox://styles/mapbox/streets-v12';
+  // final styleUrl = 'mapbox://styles/b0shka/cljeopzw3006501paf66za793';
+  final styleUrl = 'mapbox://styles/mapbox/streets-v12';
 
   // Location location = Location();
   late bool _serviceEnabled;
@@ -44,7 +44,13 @@ class _MapboxMapScreenState extends State<MapboxMapScreen> {
   @override
   void initState() {
     super.initState();
-    locationPermission();
+    locationPermission().then((value) {
+      GetIt.I<Talker>().info("value: $value");
+      LocationData? location = value;
+      // setState(() {
+      //   currentLocation = location;
+      // });
+    });
 
     _initialCameraPosition = CameraPosition(
       target: currentLocation,
@@ -58,45 +64,29 @@ class _MapboxMapScreenState extends State<MapboxMapScreen> {
     for (var placemark in widget.placemarks) {
       placemarksPoints.add(LatLng(placemark.latitude, placemark.longitude));
     }
-
-    // placemarksPoints = [];
-    // for (var placemark in widget.placemarks) {
-    //   placemarksPoints.add(
-    //     Marker(
-    //       point: LatLng(placemark.latitude, placemark.longitude),
-    //       builder: (ctx) => const Icon(
-    //         Icons.place_rounded, 
-    //         color: Colors.red, 
-    //         size: 28,
-    //       ),
-    //       rotate: true,
-    //     ),
-    //   );
-    // }
   }
 
-  void locationPermission() async {
+  Future<LocationData?> locationPermission() async {
+    final location = await getLocation();
+    return location;
     // _serviceEnabled = await location.serviceEnabled();
     // if (!_serviceEnabled) {
     //   _serviceEnabled = await location.requestService();
     //   if (!_serviceEnabled) {
-    //     return;
+    //     return null;
     //   }
     // }
-
+    //
     // _permissionGranted = await location.hasPermission();
     // if (_permissionGranted == PermissionStatus.denied) {
     //   _permissionGranted = await location.requestPermission();
     //   if (_permissionGranted != PermissionStatus.granted) {
-    //     return;
+    //     return null;
     //   }
     // }
-
+    //
     // _locationData = await location.getLocation();
-
-    // location.onLocationChanged.listen((LocationData currentLocation) {
-    //   GetIt.I<Talker>().info(currentLocation);
-    // });
+    // return _locationData;
   }
 
   void _onMapCreated(MapboxMapController controller) async {
@@ -144,8 +134,8 @@ class _MapboxMapScreenState extends State<MapboxMapScreen> {
             styleString: styleUrl,
             onMapCreated: _onMapCreated,
             onStyleLoadedCallback: _onStyleLoaded,
-            myLocationEnabled: true,
-            myLocationTrackingMode: MyLocationTrackingMode.TrackingGPS,
+            // myLocationEnabled: true,
+            // myLocationTrackingMode: MyLocationTrackingMode.TrackingGPS,
             minMaxZoomPreference: const MinMaxZoomPreference(14, 18),
           ),
           Positioned(
