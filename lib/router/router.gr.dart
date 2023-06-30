@@ -42,6 +42,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    YandexMapRoute.name: (routeData) {
+      final args = routeData.argsAs<YandexMapRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: YandexMapScreen(
+          key: args.key,
+          placemarks: args.placemarks,
+          waypoints: args.waypoints,
+        ),
+      );
+    },
     FlutterMapRoute.name: (routeData) {
       final args = routeData.argsAs<FlutterMapRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -215,6 +226,49 @@ class MapboxMapRouteArgs {
   @override
   String toString() {
     return 'MapboxMapRouteArgs{key: $key, placemarks: $placemarks, waypoints: $waypoints}';
+  }
+}
+
+/// generated route for
+/// [YandexMapScreen]
+class YandexMapRoute extends PageRouteInfo<YandexMapRouteArgs> {
+  YandexMapRoute({
+    Key? key,
+    required List<Placemark> placemarks,
+    required List<Waypoint> waypoints,
+    List<PageRouteInfo>? children,
+  }) : super(
+          YandexMapRoute.name,
+          args: YandexMapRouteArgs(
+            key: key,
+            placemarks: placemarks,
+            waypoints: waypoints,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'YandexMapRoute';
+
+  static const PageInfo<YandexMapRouteArgs> page =
+      PageInfo<YandexMapRouteArgs>(name);
+}
+
+class YandexMapRouteArgs {
+  const YandexMapRouteArgs({
+    this.key,
+    required this.placemarks,
+    required this.waypoints,
+  });
+
+  final Key? key;
+
+  final List<Placemark> placemarks;
+
+  final List<Waypoint> waypoints;
+
+  @override
+  String toString() {
+    return 'YandexMapRouteArgs{key: $key, placemarks: $placemarks, waypoints: $waypoints}';
   }
 }
 

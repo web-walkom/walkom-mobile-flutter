@@ -13,6 +13,7 @@ import 'package:walkom_mobile_flutter/repositories/auth/auth.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/excursions.dart';
 import 'package:walkom_mobile_flutter/repositories/users/users.dart';
 import 'package:flutter/services.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,6 +75,8 @@ void main() async {
   GetIt.I.registerLazySingleton<UsersRepository>(
     () => UsersRepositoryImpl(dio: dio),
   );
+
+  AndroidYandexMap.useAndroidViewSurface = false;
 
   FlutterError.onError =
       (details) => GetIt.I<Talker>().handle(details.exception, details.stack);

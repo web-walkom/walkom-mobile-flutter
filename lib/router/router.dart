@@ -27,6 +27,7 @@ class AppRouter extends _$AppRouter {
         // AutoRoute(page: GoogleMapRoute.page),
         AutoRoute(page: FlutterMapRoute.page),
         AutoRoute(page: MapboxMapRoute.page),
+        AutoRoute(page: YandexMapRoute.page),
         AutoRoute(page: PersonalDataRoute.page),
         AutoRoute(page: FavoriteRoute.page),
         AutoRoute(page: DecorationRoute.page),

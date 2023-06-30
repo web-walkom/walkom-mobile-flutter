@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:get_it/get_it.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/repositories/excursions/models/models.dart';
 import 'package:walkom_mobile_flutter/widgets/widgets.dart';
@@ -21,12 +23,15 @@ class OSMMapScreen extends StatefulWidget {
 }
 
 class _OSMMapScreenState extends State<OSMMapScreen> {
-  final startPoint = GeoPoint(
-    latitude: 57.814614,
-    longitude: 56.462332,
-  );
-  final _mapController = MapController.withPosition(
-    initPosition: GeoPoint(latitude: 57.814614, longitude: 56.462332),
+  final startPoint = GeoPoint(latitude: 55.173067, longitude: 61.518140);
+  // final _mapController = MapController.withPosition(
+  //   initPosition: GeoPoint(latitude: 55.173067, longitude: 61.518140),
+  // );
+  final _mapController = MapController.withUserPosition(
+    trackUserLocation: const UserTrackingOption(
+      enableTracking: true,
+      unFollowUser: true,
+    ),
   );
 
   final List<GeoPoint> placemarksPoints = [];
@@ -66,10 +71,13 @@ class _OSMMapScreenState extends State<OSMMapScreen> {
     if (isReady) {
       await Future.delayed(const Duration(seconds: 1), () async {
         await _mapController.currentLocation();
+        _mapController
+            .myLocation()
+            .then((value) => {GetIt.I<Talker>().info(value)});
       });
 
-      _addRoute();
-      _addPlacemark();
+      // _addRoute();
+      // _addPlacemark();
     }
   }
 
@@ -116,23 +124,26 @@ class _OSMMapScreenState extends State<OSMMapScreen> {
                 stepZoom: 1.0,
                 androidHotReloadSupport: true,
                 enableRotationByGesture: true,
+                userTrackingOption: const UserTrackingOption(
+                  enableTracking: true,
+                  unFollowUser: false,
+                ),
                 userLocationMarker: UserLocationMaker(
                   personMarker: const MarkerIcon(
                     icon: Icon(
-                      Icons.near_me_rounded,
+                      Icons.navigation_rounded,
                       color: Colors.blue,
                       size: 48,
                     ),
                   ),
                   directionArrowMarker: const MarkerIcon(
                     icon: Icon(
-                      Icons.near_me,
+                      Icons.navigation_rounded,
                       color: Colors.blue,
                       size: 48,
                     ),
                   ),
                 ),
-                roadConfiguration: const RoadOption(roadColor: Colors.blue),
                 markerOption: MarkerOption(
                   defaultMarker: const MarkerIcon(
                     icon: Icon(

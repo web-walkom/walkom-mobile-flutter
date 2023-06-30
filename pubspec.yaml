@@ -28,13 +28,14 @@ dependencies:
   # flutter_map_location_marker: ^6.0.0
   # flutter_map_marker_popup: ^5.1.0
   mapbox_gl: ^0.16.0
-  location: ^5.0.0-dev.8
+  # location: ^5.0.0-dev.8
+  yandex_mapkit: ^3.3.2
   # location:
   #   git:
   #     url: https://github.com/781flyingdutchman/flutterlocation.git
   #     ref: 'V4'
   #     path: packages/location
-  # geolocator: ^9.0.2
+  geolocator: ^9.0.2
   
 dev_dependencies:
   flutter_test:

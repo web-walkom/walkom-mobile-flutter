@@ -129,10 +129,19 @@ class _ExcursionScreenState extends State<ExcursionScreen> {
                             //   ),
                             // );
 
-                            AutoRouter.of(context).push(OSMMapRoute(
-                              placemarks: state.excursion.placemarks,
-                              waypoints: state.excursion.waypoints,
-                            ));
+                            // AutoRouter.of(context).push(
+                            //   OSMMapRoute(
+                            //     placemarks: state.excursion.placemarks,
+                            //     waypoints: state.excursion.waypoints,
+                            //   ),
+                            // );
+
+                            AutoRouter.of(context).push(
+                              YandexMapRoute(
+                                placemarks: state.excursion.placemarks,
+                                waypoints: state.excursion.waypoints,
+                              ),
+                            );
                           }
 
                           // AutoRouter.of(context).push(const GoogleMapRoute());

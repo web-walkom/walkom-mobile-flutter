@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
-import 'package:location/location.dart';
+// import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
@@ -27,30 +27,38 @@ class MapboxMapScreen extends StatefulWidget {
 class _MapboxMapScreenState extends State<MapboxMapScreen> {
   late MapboxMapController mapController;
   late CameraPosition _initialCameraPosition;
-  LatLng currentLocation = const LatLng(58.036947, 56.125779);
+  LatLng currentLocation = const LatLng(55.168547, 61.529342);
 
   final List<LatLng> placemarksPoints = [];
   final List<LatLng> polylinesPoints = [];
 
-  final apiKeyMapbox = "sk.eyJ1IjoiYjBzaGthIiwiYSI6ImNsamc1N3hkZDAyM3UzZXFpZ3hiMzM2eGcifQ.3Ed8QctY-Hkmtucs5ctoxw";
+  final apiKeyMapbox =
+      "sk.eyJ1IjoiYjBzaGthIiwiYSI6ImNsamc1N3hkZDAyM3UzZXFpZ3hiMzM2eGcifQ.3Ed8QctY-Hkmtucs5ctoxw";
   // final styleUrl = 'mapbox://styles/b0shka/cljeopzw3006501paf66za793';
   final styleUrl = 'mapbox://styles/mapbox/streets-v12';
 
   // Location location = Location();
   late bool _serviceEnabled;
-  late PermissionStatus _permissionGranted;
-  late LocationData _locationData;
+  // late PermissionStatus _permissionGranted;
+  // late LocationData _locationData;
 
   @override
   void initState() {
     super.initState();
-    locationPermission().then((value) {
-      GetIt.I<Talker>().info("value: $value");
-      LocationData? location = value;
-      // setState(() {
-      //   currentLocation = location;
-      // });
-    });
+    // locationPermission().then((value) {
+    //   GetIt.I<Talker>().info("value: $value");
+    //   LocationData? location = value;
+    //   setState(() {
+    //     currentLocation = LatLng(
+    //       location!.latitude!,
+    //       location.longitude!,
+    //     );
+    //     _initialCameraPosition = CameraPosition(
+    //       target: currentLocation,
+    //       zoom: 16,
+    //     );
+    //   });
+    // });
 
     _initialCameraPosition = CameraPosition(
       target: currentLocation,
@@ -66,41 +74,49 @@ class _MapboxMapScreenState extends State<MapboxMapScreen> {
     }
   }
 
-  Future<LocationData?> locationPermission() async {
-    final location = await getLocation();
-    return location;
-    // _serviceEnabled = await location.serviceEnabled();
-    // if (!_serviceEnabled) {
-    //   _serviceEnabled = await location.requestService();
-    //   if (!_serviceEnabled) {
-    //     return null;
-    //   }
-    // }
-    //
-    // _permissionGranted = await location.hasPermission();
-    // if (_permissionGranted == PermissionStatus.denied) {
-    //   _permissionGranted = await location.requestPermission();
-    //   if (_permissionGranted != PermissionStatus.granted) {
-    //     return null;
-    //   }
-    // }
-    //
-    // _locationData = await location.getLocation();
-    // return _locationData;
-  }
+  // Future<LocationData?> locationPermission() async {
+  //   final location = await getLocation();
+  //   return location;
+  //   // _serviceEnabled = await location.serviceEnabled();
+  //   // if (!_serviceEnabled) {
+  //   //   _serviceEnabled = await location.requestService();
+  //   //   if (!_serviceEnabled) {
+  //   //     return null;
+  //   //   }
+  //   // }
+  //   //
+  //   // _permissionGranted = await location.hasPermission();
+  //   // if (_permissionGranted == PermissionStatus.denied) {
+  //   //   _permissionGranted = await location.requestPermission();
+  //   //   if (_permissionGranted != PermissionStatus.granted) {
+  //   //     return null;
+  //   //   }
+  //   // }
+  //   //
+  //   // _locationData = await location.getLocation();
+  //   // return _locationData;
+  // }
 
   void _onMapCreated(MapboxMapController controller) async {
     mapController = controller;
   }
 
   void _onStyleLoaded() async {
-    // LatLng? location = await mapController.requestMyLocationLatLng();
+    // mapController.requestMyLocationLatLng().then((value) {
+    //   if (value != null) {
+    //     mapController.animateCamera(CameraUpdate.newLatLng(value));
+    //   }
+    // });
+
+    // LatLng? location = mapController.requestMyLocationLatLng();
     // GetIt.I<Talker>().info(location);
     // if (location != null) {
     //   mapController.animateCamera(CameraUpdate.newLatLng(location));
     // }
     _addRoute();
     _addPlacemark();
+
+    // mapController.animateCamera(CameraUpdate.newLatLng(currentLocation));
   }
 
   void _addRoute() {
@@ -134,53 +150,50 @@ class _MapboxMapScreenState extends State<MapboxMapScreen> {
             styleString: styleUrl,
             onMapCreated: _onMapCreated,
             onStyleLoadedCallback: _onStyleLoaded,
-            // myLocationEnabled: true,
-            // myLocationTrackingMode: MyLocationTrackingMode.TrackingGPS,
-            minMaxZoomPreference: const MinMaxZoomPreference(14, 18),
+            myLocationEnabled: true,
+            myLocationTrackingMode: MyLocationTrackingMode.TrackingGPS,
+            minMaxZoomPreference: const MinMaxZoomPreference(4, 18),
           ),
           Positioned(
             top: 50,
             left: 25,
             right: 25,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CircleButton(
-                  icon: Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white,
-                  elevation: 3,
-                  width: 50,
-                  height: 50,
-                  onClick: () {
-                    AutoRouter.of(context).pop();
-                  },
-                ),
-                CircleButton(
-                  icon: Icons.notes_rounded,
-                  color: Colors.white,
-                  elevation: 3,
-                  width: 50,
-                  height: 50,
-                  onClick: () {
-                    listRouteExcursion(context);
-                  },
-                ),
-              ]
-            ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CircleButton(
+                    icon: Icons.arrow_back_ios_new_rounded,
+                    color: Colors.white,
+                    elevation: 3,
+                    width: 50,
+                    height: 50,
+                    onClick: () {
+                      AutoRouter.of(context).pop();
+                    },
+                  ),
+                  CircleButton(
+                    icon: Icons.notes_rounded,
+                    color: Colors.white,
+                    elevation: 3,
+                    width: 50,
+                    height: 50,
+                    onClick: () {
+                      listRouteExcursion(context);
+                    },
+                  ),
+                ]),
           ),
           Positioned(
             bottom: 100,
             right: 25,
-            child:  CircleButton(
+            child: CircleButton(
               icon: Icons.near_me_rounded,
               color: Colors.white,
               elevation: 3,
               width: 50,
               height: 50,
               iconSize: 25,
-              onClick: () {
-
-              },
+              onClick: () {},
             ),
           ),
           Positioned(
@@ -189,9 +202,7 @@ class _MapboxMapScreenState extends State<MapboxMapScreen> {
             right: 25,
             child: MainButton(
               title: BUTTON_START_EXCURSION,
-              onClick: () {
-                
-              },
+              onClick: () {},
             ),
           ),
         ],
