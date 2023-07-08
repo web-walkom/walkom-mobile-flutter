@@ -8,6 +8,7 @@ import 'package:walkom_mobile_flutter/domain/models/action_menu_child.dart';
 import 'package:walkom_mobile_flutter/features/profile/widgets/widgets.dart';
 import 'package:walkom_mobile_flutter/repositories/users/users.dart';
 import 'package:walkom_mobile_flutter/router/router.dart';
+import 'package:walkom_mobile_flutter/styles/color.dart';
 import 'package:walkom_mobile_flutter/widgets/widgets.dart';
 
 @RoutePage()
@@ -23,6 +24,50 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+
+    logoutUser() {
+      USER = null;
+      GetIt.I<Box<User>>().clear();
+      AutoRouter.of(context).replaceAll([const ExcursionsListRoute()]);
+    }
+
+    confirmLogout(context) {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext c) {
+          return ModalBottomSheet(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+                const Title_(text: TEXT_CONFIRM_LOGOUT),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ButtonText(
+                      title: TEXT_LOGOUT, 
+                      onClick: logoutUser, 
+                      color: green,
+                    ),
+                    const SizedBox(width: 10),
+                    ButtonText(
+                      title: TEXT_CANCEL, 
+                      onClick: (){
+                        AutoRouter.of(context).pop();
+                      }, 
+                      color: red,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15)
+              ],
+            ),
+          );
+        },
+      );
+    }
+
     final actionMenuMain = [
       if (USER == null)
         ActionMenuChild(
@@ -102,11 +147,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ActionMenuChild(
           title: TEXT_LOGOUT,
           icon: Icons.logout_rounded,
-          onClick: () {
-            USER = null;
-            GetIt.I<Box<User>>().clear();
-            AutoRouter.of(context).replaceAll([const ExcursionsListRoute()]);
-          },
+          onClick: confirmLogout,
+          needContext: true,
         ),
     ];
 

@@ -6,17 +6,24 @@ class ActionMenuItem extends StatelessWidget {
     required this.title,
     required this.icon,
     required this.onClick,
+    this.needContext = false,
   });
 
   final String title;
   final IconData icon;
   final Function onClick;
+  final bool needContext;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        onClick();
+        if (needContext) {
+          onClick(context);
+        }
+        else {
+          onClick();
+        }
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 13),

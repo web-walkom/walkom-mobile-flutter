@@ -36,7 +36,10 @@ dependencies:
   #     ref: 'V4'
   #     path: packages/location
   geolocator: ^9.0.2
-  
+  # flutter_unity_widget: ^2022.2.0
+  sceneview_flutter: ^0.0.1
+  # arcore_flutter_plugin: ^0.2.0-alpha
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -52,3 +55,4 @@ flutter:
   assets:
     - assets/svg/
     - assets/png/
+    - assets/models/

@@ -33,9 +33,9 @@ const TEXT_AUTH_BY_EMAIL = "Войти через почту";
 const TEXT_DESCRIPTION_AUTH_BY_EMAIL =
     "Введите почту, мы вышлем на него код подтверждения";
 const TEXT_CODE_VERIFY = "Код подтверждения";
-const TEXT_SEND_CODE_VERIFY_PART_1 = "На почту ";
+const TEXT_SEND_CODE_VERIFY_PART_1 = "Сообщение с кодом проверки отправлено на почту ";
 const TEXT_SEND_CODE_VERIFY_PART_2 =
-    " был отправлен код подтверждения, введите его";
+    ". Введите код, чтобы продолжить.";
 const TEXT_RESEND_CODE_VERIFY = "Отправить еще раз";
 const TEXT_THEME_APP = "Тема приложения";
 const TEXT_THEME_LIGHT = "Светлая";
@@ -45,6 +45,9 @@ const TEXT_FIRST_NAME = "Имя";
 const TEXT_LAST_NAME = "Фамилия";
 const TEXT_EMAIL = "Почта";
 const TEXT_WITHOUT_NAME = "Без имени";
+const TEXT_CANCEL = "Отмена";
+const TEXT_TRY_AGAIN = "Попробвать снова";
+const TEXT_CONFIRM_LOGOUT = 'Вы уверены, что хотите выйти?';
 
 // Buttons
 const BUTTON_LOAD_EXCURSION = "Скачать";
@@ -84,6 +87,7 @@ const ERROR_SEND_CODE_EMAIL = "Ошибка при отправке кода п�
 const ERROR_CHECK_CODE_VERIFY = "Ошибка при проверке кода подтверждения";
 const ERROR_UPDATE_USER = "Ошибка при обновлении даных пользователя";
 const ERROR_DRAW_ROUTE = "Ошибка построения маршрута";
+const ERROR_BY_GET_DATA = 'Ошибка при получении данных';
 
 // Hive boxes
 const HIVE_USER_BOX = "user_box";

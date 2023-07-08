@@ -24,13 +24,7 @@ class Toolbar extends StatelessWidget {
             },
           ),
         ),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        Title_(text: title),
       ],
     );
   }

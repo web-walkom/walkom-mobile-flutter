@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pinput/pinput.dart';
 import 'package:walkom_mobile_flutter/core/constants.dart';
 import 'package:walkom_mobile_flutter/features/auth/bloc/auth_bloc.dart';
 import 'package:walkom_mobile_flutter/features/code_verify/bloc/code_verify_bloc.dart';
@@ -59,6 +60,13 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
     return BlocBuilder<CodeVerifyBloc, CodeVerifyState>(
       bloc: _codeVerifyBloc,
       builder: (context, state) {
+        if (codeValid) {
+          _codeVerifyBloc.add(CheckSecretCode(
+            email: widget.email,
+            code: int.parse(_codeController.text),
+          ));
+        }
+
         if (state is CodeVerifyChecked && state.result.status) {
           AutoRouter.of(context)
               .replaceAll([const ExcursionsListRoute()]);
@@ -77,7 +85,7 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 70.0),
+                padding: const EdgeInsets.only(bottom: 50.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -150,43 +158,25 @@ class _CodeVerifyScreenState extends State<CodeVerifyScreen> {
                             : null,
                     ),
                     const SizedBox(height: 10),
-                    TextButton(
-                      onPressed: state is! CodeVerifyChecking
+                    ButtonText(
+                      title: TEXT_RESEND_CODE_VERIFY,
+                      onClick: state is! CodeVerifyChecking
                           ? () {
                               _authBloc.add(AuthByEmail(email: widget.email));
                             }
                           : null,
-                      child: Text(
-                        TEXT_RESEND_CODE_VERIFY,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: green,
-                        ),
-                      ),
+                      color: green,
                     )
                   ],
                 ),
               ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 20,
-                child: MainButton(
-                  title: BUTTON_VERIFY,
-                  isLoading: state is CodeVerifyChecking,
-                  onClick: codeValid
-                      ? () {
-                          if (state is! CodeVerifyChecking) {
-                            _codeVerifyBloc.add(CheckSecretCode(
-                              email: widget.email,
-                              code: int.parse(_codeController.text),
-                            ));
-                          }
-                        }
-                      : null,
+              if (state is CodeVerifyChecking)
+                const Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 40,
+                  child: Loader(),
                 ),
-              ),
             ],
           ),
         );

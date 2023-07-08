@@ -21,6 +21,7 @@ class ActionMenu extends StatelessWidget {
             title: child.title,
             icon: child.icon,
             onClick: child.onClick,
+            needContext: child.needContext,
           ),
         );
 

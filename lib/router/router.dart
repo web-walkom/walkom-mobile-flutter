@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:walkom_mobile_flutter/features/about_app/about_app.dart';
 import 'package:walkom_mobile_flutter/features/auth/auth.dart';
+import 'package:walkom_mobile_flutter/features/camera_ar/camera_ar.dart';
 import 'package:walkom_mobile_flutter/features/code_verify/code_verify.dart';
 import 'package:walkom_mobile_flutter/features/data_and_memory/data_and_memory.dart';
 import 'package:walkom_mobile_flutter/features/decoration/decoration.dart';
@@ -28,6 +29,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: FlutterMapRoute.page),
         AutoRoute(page: MapboxMapRoute.page),
         AutoRoute(page: YandexMapRoute.page),
+        AutoRoute(page: CameraARRoute.page),
         AutoRoute(page: PersonalDataRoute.page),
         AutoRoute(page: FavoriteRoute.page),
         AutoRoute(page: DecorationRoute.page),
