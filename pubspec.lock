@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.7"
+  arcore_flutter_plugin:
+    dependency: "direct main"
+    description:
+      name: arcore_flutter_plugin
+      sha256: "48307e6e630cd991e5b08efd74a0869504631c828d4dc650d144c267a8b6ebfd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   args:
     dependency: transitive
     description:
@@ -872,14 +880,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.3"
-  sceneview_flutter:
-    dependency: "direct main"
-    description:
-      name: sceneview_flutter
-      sha256: "34d8a6ed1c5d3bfc99b3e14ec18e82b07b1582a84d9f1e1b6a654ac1a486c9d1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
   share_plus:
     dependency: transitive
     description:
